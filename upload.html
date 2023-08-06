@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ʀΛօɴ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+  <div class="tab-nav-container">
+    <div class="tab" onclick="window.location.replace('home.html')">
+      <i class='bx bx-home'></i>
+      <p></p>
+    </div>
+    <div class="tab active purple">
+      <i class='bx bxs-box'></i>
+      <p></p>
+    </div>
+    <div class="tab" onclick="window.location.replace('offers.html')">
+      <i class='bx bx-heart' ></i>
+      <p></p>
+    </div>
+    <div class="tab" onclick="window.location.replace('support.html')">
+      <i class='bx bx-support' ></i>
+      <p></p>
+    </div>
+    <div class="tab" onclick="window.location.replace('profile.html')">
+      <i class='bx bx-user' ></i>
+      <p></p>
+    </div>
+  </div>
+  <div class="head">
+    <h3>ʀΛօɴ</h3>
+    <h3 class="right">
+      <i class='bx bx-log-out' onclick="logout()"></i>
+      <i></i>
+     </h3>
+  </div>
+  <br><br><br> 
+  <h3 align="center"> Create Product</h3>
+  <div class="my-orders" align="center">
+    <button id="createProductButton" class="bx bx-plus">Create Product</button>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>  
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>  
+  <script src="up.js"></script>
+ 
+<br><br><br>
+
+</body>
+</html>
