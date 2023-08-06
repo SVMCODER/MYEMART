@@ -34,7 +34,7 @@ const displayProductDetails = async () => {
         <div class="product-discount">Discount: ₹${product.discount}</div>
         
         ₹${product.price}</div>
-       <button onclick="window.location.replace('show.html?id=${productId}')">Buy Now</button>
+       <button onclick="window.location.replace('buy.html?id=${productId}')">Buy Now</button>
         <div class="product-specs">
           <h3>Specifications:</h3>
           <ul>
