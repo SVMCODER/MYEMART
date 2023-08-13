@@ -45,11 +45,12 @@ async function fetchOrders() {
         <p><strong>Buyer Name:</strong> ${orderData.buyerName}</p>
         <h3 align='center' id='sta'>${orderData.status}</h3>
         <hr>
-        <button class="cancel-button-admin" onclick="cancelOrder('${doc.id}')">Cancel Order</button>
-        <button class="mark-delivered-button" onclick="markOrderAsDelivered('${doc.id}')">Mark as Delivered</button>
-        <button class="confirm-button-admin" onclick="confirmOrder('${doc.id}')">Confirm Order</button>
-        <button class="message-button" onclick="sendMessageToBuyer('${doc.id}', '${orderData.buyerName}', '${orderData.email}')">Send Message</button>
-        
+       <div align='center'>
+       <button class="cancel-button-admin" onclick="cancelOrder('${doc.id}')">Cancel Order</button>
+       <button class="mark-delivered-button" onclick="markOrderAsDelivered('${doc.id}')">Mark as Delivered</button>
+       <button class="confirm-button-admin" onclick="confirmOrder('${doc.id}')">Confirm Order</button>
+       <button class="message-button" onclick="sendMessageToBuyer('${doc.id}', '${orderData.buyerName}', '${orderData.email}')">Send Message</button>
+       </div>
       `;
       ordersList.appendChild(orderItem);
       
