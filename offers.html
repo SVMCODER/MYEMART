@@ -27,12 +27,12 @@
       <p></p>
     </div>
     <div class="tab" onclick="window.location.replace('profile.html')">
-      <i class='bx bx-user' ></i>
+      <i class='bx bx-news' ></i>
       <p></p>
     </div>
   </div>
   <div class="head">
-    <h3>My eMart</h3>
+    <h3>Trusted Deals</h3>
     <h3 class="right">
       <i class='bx bx-log-out' onclick="logout()"></i>
       <i></i>
@@ -40,42 +40,28 @@
   </div>
   <br><br><br> 
   <h3 align="center">Offers & Notifications</h3>
-  <div class="my-orders" align="center">
-    <div id="loadingSpinner" class="loading-spinner" align="center"> <br>
-      <div class="spinner"></div>
+  <div class="container" style="color: black;" id="notificationsList" align="center">
   </div>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>  
+  <script   src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>  
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>  
-  <script src="offers.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <script src="offers.js"></script>
 <br><br><br>
 <style>
-  /* Style for the loading spinner */
-  .loading-spinner {
-    align-items: center;
-    justify-content: center;
-  }
-
-  .spinner {
-    border: 4px solid rgba(0, 0, 0, 0.3);
-    border-radius: 50%;
-    border-top: 4px solid #0004ff;
-    width: 40px;
-    height: 40px;
-    animation: spin 2s linear infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  }
+.notification-item {
+  box-shadow: rgb(212, 212, 212) 0px 1px 4px;
+  width: fit-content;
+  height: auto;
+  width: 90%;
+  padding-bottom: 30px;
+  background-image: linear-gradient(rgb(0, 68, 255), rgb(0, 62, 177));
+  color: rgb(255, 255, 255);
+  padding: 0.6em 1em;
+  margin-bottom: 10px;
+  text-align: left;
+}
 </style>
 </body>
 </html>

@@ -30,12 +30,12 @@
       <p></p>
     </div>
     <div class="tab" onclick="window.location.replace('profile.html')">
-      <i class='bx bx-user' ></i>
+      <i class='bx bx-news' ></i>
       <p></p>
     </div>
   </div>
   <div class="head">
-    <h3>My eMart</h3>
+    <h3>Trusted Deals</h3>
 
     <h3 class="right">
       <i class='bx bx-log-out' onclick="logout()"></i>
@@ -43,23 +43,28 @@
      </h3>
   </div>
   <br><br><br>
-<h2>My Complaints</h2>
+<h2>Contact Us</h2>
   <div id="roomList">
-    
-    <button id="createRoomBtn" class="bx bx-plus"> Create</button>
-    <ul id="rooms">
-      <div id="loadingSpinner" class="loading-spinner" align="center"> <br>
-        <div class="spinner"></div>
-      </div>
-    </ul>
+    <h3>Email</h3>
+    <h4>Business Email: trusted_deals@net-shopping.com</h4>
+    <h4>Customer Care: customer-care@email.com</h4>
+  </div> <br>
+  <div id="roomList">
+    <h3>Phone Number</h3>
+    <h4>+91-7080060441</h4>
+  </div> <br>
+  <div id="roomList">
+    <h3>Address</h3>
+    <h4>Business Address: Maniram, Uttar Pradesh, India, 273007</h4>
+    <h4>Company Address: TaraMandal, Uttar Pradesh, India</h4>
   </div>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script   src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>  
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>  
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
   <br><br><br>
   <style>
@@ -101,7 +106,7 @@ h1 {
 
 #roomList {
   border-radius: 5px;
-  width: 300px;
+  width: 90%;
   margin: 0 auto;
   padding: 10px;
   box-shadow: 0px 0px 10px rgb(197, 197, 197);
@@ -143,7 +148,6 @@ li img {
 
 
   </style>
-  <script src="chat.js"></script>
 </body>
 
 </html>

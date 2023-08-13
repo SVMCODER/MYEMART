@@ -4,6 +4,7 @@
   <title>ʀΛօɴ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pr.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css" />
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -27,12 +28,12 @@
       <p></p>
     </div>
     <div class="tab" onclick="window.location.replace('profile.html')">
-      <i class='bx bx-user' ></i>
+      <i class='bx bx-news' ></i>
       <p></p>
     </div>
   </div>
   <div class="head">
-    <h3>My eMart</h3>
+    <h3>Trusted Deals</h3>
     <h3 class="right">
       <i class='bx bx-log-out' onclick="logout()"></i>
       <i></i>
@@ -40,16 +41,24 @@
   </div>
   <br><br><br> 
   <h3 align="center">ORDERS</h3>
-  <div id="ordersList" class="containerc" align="center">
+  <div id="oL" class="cands" align="center">
   </div>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>  
+  <script   src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>  
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>  
-  <script src="admin.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <script src="admin.js"></script>
 <br><br><br><br><br>
 <style>
+  .order-itemn{
+    text-align: left;
+    border-radius: 5px;
+  width: 90%;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-shadow: 0px 0px 10px rgb(197, 197, 197);
+  }
   /* Style for the loading spinner */
   .loading-spinner {
     align-items: center;

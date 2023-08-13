@@ -9,4 +9,31 @@ var firebaseConfig = {
 // Initialize Firebase
 // Your firebaseConfig here
 firebase.initializeApp(firebaseConfig);
-var database = firebase.database();
+const db = firebase.firestore();
+const notificationsList = document.getElementById("notificationsList");
+
+firebase.auth().onAuthStateChanged(async (user) => {
+  if (user) {
+    await fetchMessages(user);
+  } else {
+    console.log("User not authenticated.");
+  }
+});
+
+async function fetchMessages(user) {
+  const messagesRef = db.collection("messages");
+  const snapshot = await messagesRef.orderBy("timestamp", "desc").get();
+
+  snapshot.forEach((doc) => {
+    const messageData = doc.data();
+    if (messageData.userId === user.uid) {
+      const notificationItem = document.createElement("div");
+      notificationItem.classList.add("notification-item");
+      notificationItem.innerHTML = `
+      
+        <h3>${messageData.message}</h3>
+      `;
+      notificationsList.appendChild(notificationItem);
+    }
+  });
+}

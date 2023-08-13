@@ -32,12 +32,12 @@
       
     
       <div class="tab active">
-        <i class='bx bxs-user' ></i>
+        <i class='bx bxs-news' ></i>
         <p></p>
       </div>
   </div>
   <div class="head">
-    <h3>My eMart</h3>
+    <h3>Trusted Deals</h3>
 
     <h3 class="right">
       <i class='bx bx-log-out' onclick="logout()"></i>
@@ -96,27 +96,39 @@
 </head>
 <body>
     <div class="profile-container">
-        <h3>Profile</h3>
-        <div class="profile-header">
-          <img class="profile-photo" id="photo" alt="">
-          <div class="profile-info">
-            <p class="profile-username" id="displayName"></p>
-            <p class="profile-bio" id="bio"></p>
-          </div>
-        </div>
+        <h3>Terms & Conditions</h3>
+        <h4  style="color: black; text-align: left;">
+          <ul>
+            <li>Welcome To Trusted Deals, a Company offering several brands with highest discounts possible. Let's continue</li>
+            <li>
+              Refunds/Returns are not accepted.
+            </li>
+            <li>Cash/Online Payment is accepted while delivery</li>
+            <li>Delivery will be done on the provided date, neither early nor late</li>
+            <li>Order cannot be returned while delivery, hence leading to account ban</li>
+            <li>Orders are packed softly and delivered securely, don't worry about it</li>
+          </ul>
+        </h4>
+        <br>
+        <h3>Legal Notice</h3>
+        <h4>
+          This company does not work under any other affliated brands/companies, etc. <br>We are a registered brand which provides several E-Commerce related proucts and business solutions. <br>For any enquiry, <a style="color: blue; text-decoration: underline; text-align: left;" href="support.html">contact us</a>
+        </h4>
       </div>
     
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script   src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>  
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>  
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
   <br><br><br>
   <style>
-   
+   li{
+    margin-bottom: 10px;
+   }
 .loading-spinner {
   align-items: center;
   justify-content: center;
@@ -145,7 +157,6 @@ body {
 
 
   </style>
-  <script src="profile.js"></script>
 </body>
 
 </html>

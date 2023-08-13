@@ -65,9 +65,7 @@ const displayProductDetails = async () => {
     const arrivingDate = new Date(today.getTime() + 8 * 24 * 60 * 60 * 1000); // Add 3 days to the current date
     return arrivingDate.toDateString();
   }
-  
   async function buy() {
-    // Get the buyer information from the form (Assuming you have already defined them)
     const shippingAddress = document.getElementById("shippingAddress").value;
     const phoneNumber = document.getElementById("phoneNumber").value;
     const email = document.getElementById("email").value;
@@ -75,20 +73,17 @@ const displayProductDetails = async () => {
   
     if (shippingAddress !== "" && phoneNumber !== "" && email !== "" && buyerName !== "") {
       try {
-        // Fetch product details from Firestore
         const urlParams = new URLSearchParams(window.location.search);
         const productId = urlParams.get("id");
   
         const productDoc = await db.collection("products").doc(productId).get();
         const product = productDoc.data();
   
-        // Get the currently authenticated user's uid
         const user = firebase.auth().currentUser;
         const userId = user.uid;
   
-        // Create an order object with the buyer information
         const order = {
-          userId: userId, // Set the userId explicitly
+          userId: userId, // Associate the order with the user
           productId: productId,
           productTitle: product.name,
           shippingAddress: shippingAddress,
@@ -96,25 +91,22 @@ const displayProductDetails = async () => {
           email: email,
           buyerName: buyerName,
           productPrice: product.price,
-          arrivingDate: calculateArrivingDate(), // Implement this function to calculate the arriving date
+          arrivingDate: calculateArrivingDate(),
           mainImage: product.mainImage,
+          status: "confirmed",
         };
   
-        // Add the order to the Firestore collection "orders"
         await db.collection("orders").add(order);
   
-        // Show success message with SweetAlert
         await Swal.fire({
           icon: "success",
           title: "Order Placed!",
           text: "Your order has been placed successfully.",
         });
   
-        // Redirect to myorders.html after placing the order
         window.location.href = "completed.html";
       } catch (error) {
         console.error("Error placing order:", error);
-        // Show error message with SweetAlert
         await Swal.fire({
           icon: "error",
           title: "Error Placing Order",
@@ -122,7 +114,6 @@ const displayProductDetails = async () => {
         });
       }
     } else {
-      // Show error message with SweetAlert when buyer information is missing
       Swal.fire({
         icon: "error",
         title: "Missing Information",
@@ -130,3 +121,4 @@ const displayProductDetails = async () => {
       });
     }
   }
+  

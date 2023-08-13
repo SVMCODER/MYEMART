@@ -169,4 +169,20 @@ body {
   .order-item-arriving-date {
     color: #009719;
   }
+  .order-item-status {
+    color: red;
+    font-size: larger;
+    font-weight: bolder;
+  }
+  .cancelled-status {
+    color: red;
+  }
+  
+  .delivered-status {
+    color: blue;
+  }
+  
+  .arriving-status {
+    color: green;
+  }
   
