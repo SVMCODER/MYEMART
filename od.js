@@ -46,7 +46,9 @@ async function fetchMyOrders(user) {
 
     // Clear existing ordersList content
     ordersList.innerHTML = "";
-
+    if (orders.length === 0) {
+      ordersList.innerHTML = 'No Orders Yet!'
+    } else {
     orders.forEach((orderData) => {
       const orderItem = document.createElement("div");
       orderItem.classList.add("order-item");
@@ -94,8 +96,9 @@ async function fetchMyOrders(user) {
       orderItem.appendChild(orderItemContent);
       ordersList.appendChild(orderItem);
     });
-
-  } catch (error) {
+  }
+  }
+  catch (error) {
     console.error("Error fetching orders:", error);
   }
 }

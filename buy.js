@@ -40,7 +40,7 @@ const displayProductDetails = async () => {
         <input type="number" id="phoneNumber" placeholder="Phone Number*" required>
         <input type="email" id="email" placeholder="Email Address*" required>
 
-        <button type="button" onclick='buy()'>Buy Now</button>
+        <button type="button" id="buy-button" onclick='buy()'>Buy Now</button>
       </form>
     </div>
     </div>
@@ -70,7 +70,7 @@ const displayProductDetails = async () => {
     const phoneNumber = document.getElementById("phoneNumber").value;
     const email = document.getElementById("email").value;
     const buyerName = document.getElementById("buyerName").value;
-  
+    document.getElementById('buy-button').disabled = true;
     if (shippingAddress !== "" && phoneNumber !== "" && email !== "" && buyerName !== "") {
       try {
         const urlParams = new URLSearchParams(window.location.search);
@@ -107,6 +107,7 @@ const displayProductDetails = async () => {
         window.location.href = "completed.html";
       } catch (error) {
         console.error("Error placing order:", error);
+        document.getElementById('buy-button').disabled = false;
         await Swal.fire({
           icon: "error",
           title: "Error Placing Order",
@@ -114,6 +115,7 @@ const displayProductDetails = async () => {
         });
       }
     } else {
+      document.getElementById('buy-button').disabled = false;
       Swal.fire({
         icon: "error",
         title: "Missing Information",

@@ -15,7 +15,7 @@ const displayProductDetails = async () => {
   productDetailsElement.innerHTML = '';
 
   const urlParams = new URLSearchParams(window.location.search);
-  const productId = urlParams.get('id');
+  const productId = urlParams.get('request-id');
 
   const productDoc = await db.collection('products').doc(productId).get();
   if (productDoc.exists) {
