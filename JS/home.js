@@ -70,3 +70,36 @@ function logout() {
     }
   });
 }
+const slider = document.querySelector('.slider');
+const slides = document.querySelectorAll('.slide');
+let currentIndex = 0;
+
+// Listen for left and right swipe gestures
+let startX = null;
+slider.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+});
+
+slider.addEventListener('touchmove', (e) => {
+  if (!startX) return;
+  const diffX = e.touches[0].clientX - startX;
+  if (diffX > 30) {
+    showSlide(currentIndex - 1);
+  } else if (diffX < -30) {
+    showSlide(currentIndex + 1);
+  }
+  startX = null;
+});
+
+// Display the specified slide
+function showSlide(index) {
+  if (index < 0) index = slides.length - 1;
+  if (index >= slides.length) index = 0;
+
+  currentIndex = index;
+  const translateX = -currentIndex * 100;
+  slider.style.transform = `translateX(${translateX}%)`;
+}
+
+// Initially show the first slide
+showSlide(currentIndex);

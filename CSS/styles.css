@@ -3,6 +3,34 @@
   -webkit-tap-highlight-color: transparent; /* For WebKit/Blink-based browsers */
 
 }
+
+
+.slider-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1200px; /* Adjust as needed */
+  margin: 0 auto;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  flex: 0 0 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+}
+
 html,body {
   outline-color: #000b1f;
   height: 94%;
