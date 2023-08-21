@@ -48,20 +48,27 @@ const displayProductDetails = async () => {
 
       productDetailsElement.appendChild(productCard);
 
-      // Check if the user has a saved shipping address
       const user = firebase.auth().currentUser;
-      const userId = user.uid;
-      const userDoc = await db.collection("shippingAddresses").doc(userId).get();
-      const userData = userDoc.data();
+const userId = user.uid;
+const userDoc = await db.collection("shippingAddresses").doc(userId).get();
 
-      if (userData.shippingAddress) {
-        // User has a saved shipping address
-        document.getElementById("shippingForm").style.display = "none";
-        document.getElementById("shippingAddress").value = userData.shippingAddress;
-      } else {
-        // User does not have a saved shipping address
-        document.getElementById("shippingForm").style.display = "block";
-      }
+if (userDoc.exists) {
+  const userData = userDoc.data();
+
+  if (userData.shippingAddress) {
+    // User has a saved shipping address
+    document.getElementById("shippingForm").style.display = "none";
+    document.getElementById("shippingAddress").value = userData.shippingAddress;
+  } else {
+    // User does not have a saved shipping address
+    document.getElementById("shippingForm").style.display = "block";
+  }
+} else {
+  // User document does not exist, handle accordingly
+  console.log("User document not found");
+  document.getElementById("shippingForm").style.display = "block";
+}
+
     } else {
       productDetailsElement.innerHTML = '<p>Product not found.</p>';
     }

@@ -30,12 +30,10 @@ try {
     } else if (orderData.status === "delivered") {
       orderItem.style.color = "blue";
       // Delete order if status is delivered
-      await db.collection("orders").doc(doc.id).delete();
       return; // Skip rendering this order item
     } else if (orderData.status === "cancelled") {
       orderItem.style.color = "red";
       // Delete order if status is cancelled
-      await db.collection("orders").doc(doc.id).delete();
       return; // Skip rendering this order item
     }
     orderItem.innerHTML = `
