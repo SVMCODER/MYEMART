@@ -151,12 +151,19 @@ async function sendMessageToBuyer(orderId, buyerName, buyerEmail) {
 
     Swal.fire({
       title: `Send Message to ${buyerName}`,
-      input: 'textarea',
-      inputLabel: 'Message to Buyer',
+      html: `
+        <label for="message">Message to Buyer:</label>
+        <textarea id="message" class="swal2-textarea" rows="4"></textarea>
+        <label for="imageURL">Image URL (optional):</label>
+        <input type="text" id="imageURL" class="swal2-input">
+      `,
       showCancelButton: true,
       confirmButtonText: 'Send',
       cancelButtonText: 'Cancel',
-      preConfirm: async (message) => {
+      preConfirm: async () => {
+        const message = document.getElementById('message').value;
+        const imageURL = document.getElementById('imageURL').value;
+        
         try {
           const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 
@@ -165,6 +172,7 @@ async function sendMessageToBuyer(orderId, buyerName, buyerEmail) {
             userIds: [userId], // Assuming userIds is an array of user IDs
             timestamp,
             message,
+            imageURL,
           });
 
           console.log(`Message sent to ${buyerName} (${buyerEmail}): ${message}`);

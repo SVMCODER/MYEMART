@@ -10,31 +10,31 @@ var firebaseConfig = {
   const db = firebase.firestore();
   const auth = firebase.auth();
   
-  // Function to fetch and display products
-  const displayProducts = async () => {
-    const productListElement = document.getElementById('productList');
-    productListElement.innerHTML = '';
+  // // Function to fetch and display products
+  // const displayProducts = async () => {
+  //   const productListElement = document.getElementById('productList');
+  //   productListElement.innerHTML = '';
   
-    const productsSnapshot = await db.collection('products').get();
-    productsSnapshot.forEach(doc => {
-      const product = doc.data();
+  //   const productsSnapshot = await db.collection('products').get();
+  //   productsSnapshot.forEach(doc => {
+  //     const product = doc.data();
   
-      const productCard = document.createElement('div');
-      productCard.className = 'product-card';
-      productCard.innerHTML = `
-        <img class="product-image" src="${product.mainImage}" onclick="window.location.replace('item.html?request-id=${doc.id}')">
-        <h2 class="product-title" onclick="window.location.replace('item.html?request-id=${doc.id}')">${product.name}</h2>
-        <div class="product-price" onclick="window.location.replace('item.html?request-id=${doc.id}')">₹${product.price}</div>
-        <div class="product-discount" onclick="window.location.replace('item.html?request-id=${doc.id}')">FREE SHIPPING</div>
-        <button class="buy-now-btn" onclick="window.location.replace('item.html?request-id=${doc.id}')">Buy Now</button>
-      `;
+  //     const productCard = document.createElement('div');
+  //     productCard.className = 'product-card';
+  //     productCard.innerHTML = `
+  //       <img class="product-image" src="${product.mainImage}" onclick="window.location.replace('item.html?request-id=${doc.id}')">
+  //       <h2 class="product-title" onclick="window.location.replace('item.html?request-id=${doc.id}')">${product.name}</h2>
+  //       <div class="product-price" onclick="window.location.replace('item.html?request-id=${doc.id}')">₹${product.price}</div>
+  //       <div class="product-discount" onclick="window.location.replace('item.html?request-id=${doc.id}')">FREE SHIPPING</div>
+  //       <button class="buy-now-btn" onclick="window.location.replace('item.html?request-id=${doc.id}')">Buy Now</button>
+  //     `;
   
-      productListElement.appendChild(productCard);
-    });
-  };
+  //     productListElement.appendChild(productCard);
+  //   });
+  // };
   
-  // Display products when the page loads
-  displayProducts();
+  // // Display products when the page loads
+  // displayProducts();
   
   // Search button click event listener
 const searchButton = document.getElementById('searchButton');

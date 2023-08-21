@@ -9,35 +9,44 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
 
   const db = firebase.firestore();
-  // Function to fetch and display messages for the current user
-  async function fetchMessagesForUser(userId) {
-    try {
-      const messagesRef = db.collection("messages");
-      const querySnapshot = await messagesRef.where("userIds", "array-contains", userId).get();
+// Function to fetch and display messages for the current user
+async function fetchMessagesForUser(userId) {
+  try {
+    const messagesRef = db.collection("messages");
+    const querySnapshot = await messagesRef.where("userIds", "array-contains", userId).get();
 
-      const notificationsList = document.getElementById("notificationsList");
-      notificationsList.innerHTML = ""; // Clear previous notifications
+    const notificationsList = document.getElementById("notificationsList");
+    notificationsList.innerHTML = ""; // Clear previous notifications
 
-      querySnapshot.forEach((doc) => {
-        const messageData = doc.data();
-        const notificationItem = document.createElement("div");
-        notificationItem.classList.add("notification-item");
-        notificationItem.innerHTML = `
-          <h3>${messageData.message}</h3>
-        `;
-        notificationsList.appendChild(notificationItem);
-      });
-    } catch (error) {
-      console.error("Error fetching messages:", error);
-    }
+    querySnapshot.forEach((doc) => {
+      const messageData = doc.data();
+      const notificationItem = document.createElement("div");
+      notificationItem.classList.add("notification-item");
+      
+      // Include the image URL if available
+      let imageElement = "";
+      if (messageData.imageURL) {
+        imageElement = `<img src="${messageData.imageURL}" alt="Message Image" class="message-image">`;
+      }
+      
+      notificationItem.innerHTML = `
+        ${imageElement}
+        <h3>${messageData.message}</h3>
+        <p>${messageData.timestamp}</p>
+      `;
+      notificationsList.appendChild(notificationItem);
+    });
+  } catch (error) {
+    console.error("Error fetching messages:", error);
   }
+}
 
-  // Fetch messages when the user is authenticated
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      console.log("User authenticated:", user);
-      fetchMessagesForUser(user.uid); // Pass the user's UID to the function
-    } else {
-      console.error("User not authenticated.");
-    }
-  });
+// Fetch messages when the user is authenticated
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log("User authenticated:", user);
+    fetchMessagesForUser(user.uid); // Pass the user's UID to the function
+  } else {
+    console.error("User not authenticated.");
+  }
+});
