@@ -32,7 +32,6 @@ async function fetchMessagesForUser(userId) {
       notificationItem.innerHTML = `
         ${imageElement}
         <h3>${messageData.message}</h3>
-        <p>${messageData.timestamp}</p>
       `;
       notificationsList.appendChild(notificationItem);
     });

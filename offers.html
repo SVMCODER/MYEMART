@@ -26,7 +26,7 @@
       <i class='bx bx-support' ></i>
       <p></p>
     </div>
-    <div class="tab" onclick="profile">
+    <div class="tab" onclick="profile()">
       <i class='bx bx-user' ></i>
       <p></p>
     </div>
@@ -56,14 +56,15 @@
 <style>
 /* Style for the notification container */
 #notificationsList {
-  max-width: 800px;
+  max-width: fit-content;
   margin: 0 auto;
+  min-width: 90%;
 }
 
 /* Style for each notification item */
 .notification-item {
-  display: flex;
-  border: 1px solid #ddd;
+  background-image: linear-gradient(rgb(1, 0, 12), rgb(7, 0, 82));
+  border: 1px solid #080808;
   border-radius: 4px;
   margin-bottom: 15px;
   padding: 15px;
@@ -71,14 +72,9 @@
 
 /* Style for the image within the notification */
 .notification-item img {
-  max-width: 80px;
+  width: 99%;
   height: auto;
-  margin-right: 15px;
-}
-
-/* Style for the content section */
-.notification-item-content {
-  flex: 1;
+  margin-bottom: 10px;
 }
 
 /* Style for the message text */
@@ -88,30 +84,6 @@
   color: #ffffff;
 }
 
-/* Style for the timestamp */
-.notification-item .timestamp {
-  font-size: 14px;
-  color: #b6b6b6;
-  margin-top: 5px;
-}
-
-/* Add more styles as needed */
-
-/* Style for link buttons */
-.notification-item .btn-link {
-  display: inline-block;
-  padding: 6px 12px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.notification-item .btn-link:hover {
-  background-color: #0056b3;
-}
 
 </style>
 </body>

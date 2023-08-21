@@ -35,7 +35,7 @@ async function login() {
     console.error("Login error:", errorCode, errorMessage);
 
     if (errorCode === "auth/user-not-found") {
-      const usernameInput = await Swal.fire({
+      const { value: username } = await Swal.fire({
         title: "Create New Account",
         text: "Username",
         input: "text",
@@ -71,8 +71,7 @@ async function login() {
         allowOutsideClick: () => !Swal.isLoading()
       });
 
-      if (usernameInput.isConfirmed) {
-        const username = usernameInput.value;
+      if (username) {
         Swal.fire({
           icon: "success",
           title: "Success",

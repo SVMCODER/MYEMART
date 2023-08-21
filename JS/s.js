@@ -36,7 +36,7 @@ var firebaseConfig = {
   // // Display products when the page loads
   // displayProducts();
   
-  // Search button click event listener
+// Search button click event listener
 const searchButton = document.getElementById('searchButton');
 searchButton.addEventListener('click', async () => {
   const searchInput = document.getElementById('searchInput').value.trim().toLowerCase();
@@ -49,11 +49,11 @@ searchButton.addEventListener('click', async () => {
   try {
     const productsSnapshot = await db.collection('products').get();
     const matchedProducts = [];
-    
+
     productsSnapshot.forEach(doc => {
       const product = doc.data();
       const productTitleWords = product.name.toLowerCase().split(' '); // Split product title into words
-      
+
       // Check if any of the search keywords match any word from the product title
       if (searchKeywords.some(keyword => productTitleWords.includes(keyword))) {
         matchedProducts.push(product);
@@ -65,28 +65,29 @@ searchButton.addEventListener('click', async () => {
     console.error('Error searching products:', error);
   }
 });
-  // Function to display matched products
-  const displayMatchedProducts = (matchedProducts) => {
-    const productListElement = document.getElementById('productList');
-    productListElement.innerHTML = '';
-  
-    if (matchedProducts.length === 0) {
-      const noProductsMessage = document.createElement('p');
-      noProductsMessage.textContent = 'No matching products found.';
-      productListElement.appendChild(noProductsMessage);
-    } else {
-      matchedProducts.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
-        productCard.innerHTML = `
-          <img class="product-image" src="${product.mainImage}" onclick="window.location.replace('item.html?request-id=${product.id}')">
-          <h2 class="product-title" onclick="window.location.replace('item.html?request-id=${product.id}')">${product.name}</h2>
-          <div class="product-price" onclick="window.location.replace('item.html?request-id=${product.id}')">₹${product.price}</div>
-          <div class="product-discount" onclick="window.location.replace('item.html?request-id=${product.id}')">FREE SHIPPING</div>
-          <button class="buy-now-btn" onclick="window.location.replace('item.html?request-id=${product.id}')">Buy Now</button>
-        `;
-  
-        productListElement.appendChild(productCard);
-      });
-    }
-  };
+
+// Function to display matched products
+const displayMatchedProducts = (matchedProducts) => {
+  const productListElement = document.getElementById('productList');
+  productListElement.innerHTML = '';
+
+  if (matchedProducts.length === 0) {
+    const noProductsMessage = document.createElement('p');
+    noProductsMessage.textContent = 'No matching products found.';
+    productListElement.appendChild(noProductsMessage);
+  } else {
+    matchedProducts.forEach(product => {
+      const productCard = document.createElement('div');
+      productCard.className = 'ssw product-card'; // Apply the .ssw class
+      productCard.innerHTML = `
+        <img class="product-image" src="${product.mainImage}" onclick="window.location.replace('item.html?request-id=${product.id}')">
+        <h2 class="product-title" onclick="window.location.replace('item.html?request-id=${product.id}')">${product.name}</h2>
+        <div class="product-price" onclick="window.location.replace('item.html?request-id=${product.id}')">₹${product.price}</div>
+        <div class="product-discount" onclick="window.location.replace('item.html?request-id=${product.id}')">FREE SHIPPING</div>
+        <button class="buy-now-btn" onclick="window.location.replace('item.html?request-id=${product.id}')">Buy Now</button>
+      `;
+
+      productListElement.appendChild(productCard);
+    });
+  }
+};

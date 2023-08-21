@@ -10,88 +10,81 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-// Get a reference to the Firebase Realtime Database
-var database = firebase.database();
-// Function to get the user's uid from the URL parameters
-function getUserUidFromURL() {
-    var urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('uid');
-  }
-  
-// Function to display user data
-function displayUserData(user) {
-  var uid = user.uid;
-  var displayName = user.displayName;
-  var photoURL = 'https://cdn-icons-png.flaticon.com/512/7153/7153150.png';
+// Assume you have Firebase authentication and Firestore initialized
+const db = firebase.firestore();
+const auth = firebase.auth();
 
-  // If uid is provided in the URL, use that uid to fetch user data
-  var urlParams = new URLSearchParams(window.location.search);
-  var profileUid = urlParams.get('uid');
+auth.onAuthStateChanged(user => {
+  if (user) {
+    // User is signed in, fetch user data and update profile form
+    const profilePicture = document.getElementById('profile-picture');
+    const userName = document.getElementById('user-name');
+    const userEmail = document.getElementById('user-email');
+    const profileUpdateForm = document.getElementById('profile-update-form');
 
-  if (profileUid) {
-    if (profileUid === uid) {
-      // If the current user's uid is the same as the provided uid, display the current user's data
-      displayUserProfile(uid, displayName, photoURL);
-    } else {
-      // Fetch the data of the specified user
-      fetchUserProfile(profileUid);
-    }
-  } else {
-    // No uid provided, display the current user's data (if logged in)
-    if (uid) {
-      displayUserProfile(uid, displayName, photoURL);
-    } else {
-      // User not logged in, redirect to login page
-      window.location.href = 'login.html';
-    }
-  }
-}
-// Function to fetch and display user profile data
-function fetchUserProfile(uid) {
-    var usersRef = database.ref('users/' + uid);
-  
-    usersRef.once('value')
-    .then(function (snapshot) {
-      var userData = snapshot.val();
-      if (userData) {
-        displayUserProfile(uid, userData.displayName, userData.photoURL);
-      } else {
-        console.log('User data not found');
-        // Show an error message or redirect to a not found page
+    // Update user profile information
+    profilePicture.src = user.photoURL || 'https://wallpapers.com/images/hd/cool-pictures-fz4qiypiy3ob4vix.jpg';
+    userName.textContent = user.displayName || '';
+    userEmail.textContent = user.email || '';
+
+    // Update profile information on form submission
+    profileUpdateForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const shippingAddress = document.getElementById('shipping-address').value;
+      const email = document.getElementById('email').value;
+      const phoneNumber = document.getElementById('phone-number').value;
+      const zip = document.getElementById('zip-code').value;
+      const city = document.getElementById('city').value;
+      const state = document.getElementById('state').value;
+      const username = document.getElementById('username').value;
+      
+      try {
+        await db.collection("shippingAddresses").doc(user.uid).set({
+          shippingAddress,
+          email,
+          phoneNumber,
+          zip,
+          city,
+          state,
+          username
+        });
+        Swal.fire({
+          icon: "success",
+          title: "Profile UPdated",
+          text: "Your profile has been updated successfully.",
+        });
+      } catch (error) {
+        console.error('Error updating profile:', error);
+        alert('An error occurred while updating your profile.');
       }
-    })
-    .catch(function (error) {
-      console.log('Error fetching user data:', error);
-      // Handle the error as needed
     });
-  
   }
-  // Function to display user profile data and posts
-  function displayUserProfile(uid, displayName, photoURL) {
-    // Update the HTML elements to display user information
-    var displayNameElement = document.getElementById('displayName');
+});
+function show() {
+  document.getElementById('profile-update-form').innerHTML = `
+  <label for="shipping-address">Shipping Address</label>
+  <input type="text" id="shipping-address" name="shipping-address" required>
   
-    var photoElement = document.getElementById('photo');
-    displayNameElement.textContent = displayName;
-    photoElement.src = 'https://cdn-icons-png.flaticon.com/512/7153/7153150.png';
-
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" required>
   
-  }
-    
-
-
- // Check if the user is signed in
-firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      // User is signed in
-      console.log('User signed in:', user.displayName);
-      displayUserProfile(user.uid, user.displayName, user.photoURL);
-    
-    } else {
-      // User is signed out or not signed in
-      console.log('User signed out or not signed in.');
-      // Redirect the user to index.html or login.html
-      window.location.href = 'index.html'; // or login.html
-    }
-  });
-
+  <label for="phone-number">Phone Number</label>
+  <input type="tel" id="phone-number" name="phone-number" required>
+  
+  <label for="zip-code">Zip Code</label>
+  <input type="text" id="zip-code" name="zip-code" required>
+  
+  <label for="city">City</label>
+  <input type="text" id="city" name="city" required>
+  
+  <label for="state">State</label>
+  <input type="text" id="state" name="state" required>
+  
+  <label for="username">Username</label>
+  <input type="text" id="username" name="username" required>
+  
+  <button type="submit">Update Profile</button>
+  `
+}
+document.getElementById('btn.').addEventListener('click', show)
