@@ -54,7 +54,7 @@ async function fetchOrders() {
           <button class="cancel-button-admin" onclick="cancelOrder('${doc.id}')">Cancel Order</button>
           <button class="mark-delivered-button" onclick="markOrderAsDelivered('${doc.id}')">Mark as Delivered</button>
           <button class="confirm-button-admin" onclick="confirmOrder('${doc.id}')">Confirm Order</button>
-          <button class="message-button" onclick="sendMessageToBuyer('${doc.id}', '${orderData.buyerName}', '${orderData.email}')">Send Message</button>
+          // <button class="message-button" onclick="sendMessageToBuyer('${doc.id}', '${orderData.buyerName}', '${orderData.email}')">Send Message</button>
           <button class="delete-button-admin" onclick="deleteOrder('${doc.id}')">Delete Order</button>
         </div>
       `;
@@ -142,11 +142,12 @@ async function markOrderAsDelivered(orderId) {
   }
 }
 
-
 // Function to send a message to the buyer (for admin)
 async function sendMessageToBuyer(orderId, buyerName, buyerEmail) {
   try {
-    const user = firebase.auth().currentUser;
+    const orderDoc = await db.collection("orders").doc(orderId).get();
+    const orderData = orderDoc.data();
+    const userId = orderData.userId; // Assuming the userId is available in the order data
 
     Swal.fire({
       title: `Send Message to ${buyerName}`,
@@ -157,15 +158,12 @@ async function sendMessageToBuyer(orderId, buyerName, buyerEmail) {
       cancelButtonText: 'Cancel',
       preConfirm: async (message) => {
         try {
-          // Fetch the order document to get the userId of the buyer
-          const orderDoc = await db.collection("orders").doc(orderId).get();
-          const orderData = orderDoc.data();
-          const userIds = orderData.userId;
+          const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 
           // Create a message document in the messages collection
-          const timestamp = firebase.firestore.FieldValue.serverTimestamp();
           await db.collection("messages").add({
-            userIds,
+            userIds: [userId], // Assuming userIds is an array of user IDs
+            timestamp,
             message,
           });
 
@@ -186,7 +184,7 @@ async function sendMessageToBuyer(orderId, buyerName, buyerEmail) {
       },
     });
   } catch (error) {
-    console.error("Error getting current user:", error);
+    console.error("Error fetching order data:", error);
   }
 }
 

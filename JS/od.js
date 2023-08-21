@@ -84,15 +84,16 @@ async function fetchMyOrders(user) {
 
         const cancelButton = document.createElement("button");
         cancelButton.classList.add("cancel-button");
-        cancelButton.textContent = "Cancel Order";
+        cancelButton.textContent = "Cancel";
         cancelButton.addEventListener("click", async () => {
           await cancelOrder(orderData.id); // Implement the cancelOrder function
           fetchMyOrders(user); // Refresh orders after cancellation
         });
+        orderItemContent.appendChild(orderStatus);
         orderItemContent.appendChild(cancelButton);
       }
 
-      orderItemContent.appendChild(orderStatus);
+      
       orderItem.appendChild(orderItemContent);
       ordersList.appendChild(orderItem);
     });

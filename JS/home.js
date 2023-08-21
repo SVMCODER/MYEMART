@@ -70,36 +70,52 @@ function logout() {
     }
   });
 }
-const slider = document.querySelector('.slider');
-const slides = document.querySelectorAll('.slide');
+const slider = document.getElementById('slider');
+const slideImage = document.getElementById('slideImage');
+const dotsContainer = document.getElementById('dotsContainer');
+const images = ['images/1.jpg', 'images/2.jpg', 'images/3.jpg'];
 let currentIndex = 0;
 
-// Listen for left and right swipe gestures
-let startX = null;
-slider.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX;
-});
-
-slider.addEventListener('touchmove', (e) => {
-  if (!startX) return;
-  const diffX = e.touches[0].clientX - startX;
-  if (diffX > 30) {
-    showSlide(currentIndex - 1);
-  } else if (diffX < -30) {
-    showSlide(currentIndex + 1);
-  }
-  startX = null;
-});
-
-// Display the specified slide
 function showSlide(index) {
-  if (index < 0) index = slides.length - 1;
-  if (index >= slides.length) index = 0;
+  if (index < 0) index = images.length - 1;
+  if (index >= images.length) index = 0;
 
   currentIndex = index;
-  const translateX = -currentIndex * 100;
-  slider.style.transform = `translateX(${translateX}%)`;
+  slideImage.src = images[currentIndex];
+  updateDots(currentIndex);
 }
+
+function updateDots(currentIndex) {
+  dotsContainer.innerHTML = ''; // Clear existing dots
+  for (let i = 0; i < images.length; i++) {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    if (i === currentIndex) {
+      dot.classList.add('active');
+    }
+    dot.addEventListener('click', () => showSlide(i));
+    dotsContainer.appendChild(dot);
+  }
+}
+
+function nextSlide() {
+  showSlide(currentIndex + 1);
+}
+
+function prevSlide() {
+  showSlide(currentIndex - 1);
+}
+
+// Automatically switch to the next slide every 3 seconds
+setInterval(nextSlide, 3000);
 
 // Initially show the first slide
 showSlide(currentIndex);
+
+// Add event listeners to left and right buttons
+const leftButton = document.getElementById('leftButton');
+leftButton.addEventListener('click', prevSlide);
+
+const rightButton = document.getElementById('rightButton');
+rightButton.addEventListener('click', nextSlide);
+

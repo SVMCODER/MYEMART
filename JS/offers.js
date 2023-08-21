@@ -6,34 +6,38 @@ var firebaseConfig = {
     messagingSenderId: "797719983777",
     appId: "1:797719983777:web:d7ffca1316891b51ec62e0"
   };
-// Initialize Firebase
-// Your firebaseConfig here
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const notificationsList = document.getElementById("notificationsList");
+  firebase.initializeApp(firebaseConfig);
 
-firebase.auth().onAuthStateChanged(async (user) => {
-  if (user) {
-    await fetchMessages(user);
-  } else {
-    console.log("User not authenticated.");
+  const db = firebase.firestore();
+  // Function to fetch and display messages for the current user
+  async function fetchMessagesForUser(userId) {
+    try {
+      const messagesRef = db.collection("messages");
+      const querySnapshot = await messagesRef.where("userIds", "array-contains", userId).get();
+
+      const notificationsList = document.getElementById("notificationsList");
+      notificationsList.innerHTML = ""; // Clear previous notifications
+
+      querySnapshot.forEach((doc) => {
+        const messageData = doc.data();
+        const notificationItem = document.createElement("div");
+        notificationItem.classList.add("notification-item");
+        notificationItem.innerHTML = `
+          <h3>${messageData.message}</h3>
+        `;
+        notificationsList.appendChild(notificationItem);
+      });
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+    }
   }
-});
 
-async function fetchMessages(user) {
-  const messagesRef = db.collection("messages");
-  const snapshot = await messagesRef.orderBy("timestamp", "desc").get();
-
-  snapshot.forEach((doc) => {
-    const messageData = doc.data();
-    if (messageData.userId === user.uid) {
-      const notificationItem = document.createElement("div");
-      notificationItem.classList.add("notification-item");
-      notificationItem.innerHTML = `
-      
-        <h3>${messageData.message}</h3>
-      `;
-      notificationsList.appendChild(notificationItem);
+  // Fetch messages when the user is authenticated
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      console.log("User authenticated:", user);
+      fetchMessagesForUser(user.uid); // Pass the user's UID to the function
+    } else {
+      console.error("User not authenticated.");
     }
   });
-}
