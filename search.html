@@ -39,104 +39,128 @@
 
     <h3 class="right">
       <i class="bx bx-search" onclick="hsearch()"></i>
+     
       <i class='bx bx-log-out' onclick="logout()"></i>
       <i></i>
     </h3>
   </div>
   <br><br><br><br>
-  <div class="ssw" align="center">
-
-    <div class="slider-container">
-      <div class="slider">
-        <div class="slide">
-          <img src="images/1.jpg" alt="Slide 1">
-        </div>
-        <div class="slide">
-          <img src="images/2.jpg" alt="Slide 2">
-        </div>
-        <div class="slide">
-          <img src="images/3.jpg" alt="Slide 3">
-        </div>
-      </div>
-    </div>
-    
-    <hr>
-    <h3>Trending</h3>
-      <div class="container" id="productList"><div id="loadingSpinner" class="loading-spinner" align="center"> <br>
-        <div class="spinner"></div></div>
-    </div>
-
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search by product title...">
+    <button id="searchButton">Search</button>
+  </div>
+  <div class="product-list" id="productList">
+    <!-- Products will be displayed here -->
+  </div>
     <br><br><br>
-
-    <script>
-   const slider = document.querySelector('.slider');
-const slides = document.querySelectorAll('.slide');
-let currentIndex = 0;
-
-// Listen for left and right swipe gestures
-let startX = null;
-slider.addEventListener('touchstart', (e) => {
-  startX = e.touches[0].clientX;
-});
-
-slider.addEventListener('touchmove', (e) => {
-  if (!startX) return;
-  const diffX = e.touches[0].clientX - startX;
-  if (diffX > 30) {
-    showSlide(currentIndex - 1);
-  } else if (diffX < -30) {
-    showSlide(currentIndex + 1);
-  }
-  startX = null;
-});
-
-// Display the specified slide
-function showSlide(index) {
-  if (index < 0) index = slides.length - 1;
-  if (index >= slides.length) index = 0;
-
-  currentIndex = index;
-  const translateX = -currentIndex * 100;
-  slider.style.transform = `translateX(${translateX}%)`;
+<style>
+    
+header {
+  background-color: #232f3e;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
 }
 
-// Initially show the first slide
-showSlide(currentIndex);
-    </script>
-  <style>
-    .slider-container {
+.search-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#searchInput {
+  padding: 10px;
+  width: 60%;
+  outline: none;
+  border: none;
+}
+
+#searchButton {
+  padding: 10px;
+  background-color: #0106ff;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.product-list {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  width: 100%;
-  max-width: 1200px; /* Adjust as needed */
-  margin: 0 auto;
 }
 
-.slider {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
+.product-item {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px;
+  width: 300px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.slide {
-  flex: 0 0 100%;
+.product-item img {
   max-width: 100%;
-  overflow: hidden;
-}
-
-.slide img {
-  width: 100%;
   height: auto;
+  margin-bottom: 10px;
 }
 
-  </style>
+.product-title {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.product-price {
+  font-size: 16px;
+  color: #B12704;
+  margin-bottom: 5px;
+}
+
+.product-discount {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 10px;
+}
+.product-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .product-item {
+      border: 1px solid #ccc;
+      padding: 20px;
+      width: 300px;
+    }
+
+    .product-title {
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .product-image {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+    }
+
+    .product-price {
+      margin-top: 10px;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+</style>
  <script   src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
  <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
  <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>  
  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>  
  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-    <script src="JS/home.js"></script>
+    <script src="JS/s.js"></script>
+    
     <script src="JS/nav.js"></script>
 </body>
 

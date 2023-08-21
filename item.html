@@ -4,8 +4,8 @@
 <head>
   <title>ᴛʀᴜ💲ᴛᴇᴅ ᴅᴇAʟs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="old.css">
+  <link rel="stylesheet" href="CSS/styles.css">
+  <link rel="stylesheet" href="CSS/old.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
@@ -17,20 +17,20 @@
       <i class='bx bxs-home'></i>
       <p></p>
     </div>
-    <div class="tab" onclick="window.location.replace('orders.html')">
+    <div class="tab" onclick="orders()">
       <i class='bx bx-box'></i>
       <p></p>
     </div>
-    <div class="tab" onclick="window.location.replace('offers.html')">
+    <div class="tab" onclick="offers()">
       <i class='bx bx-heart'></i>
       <p></p>
     </div>
-    <div class="tab" onclick="window.location.replace('support.html')">
+    <div class="tab" onclick="support()">
       <i class='bx bx-support' ></i>
       <p></p>
     </div>
-    <div class="tab" onclick="window.location.replace('profile.html')">
-      <i class='bx bx-news' ></i>
+    <div class="tab" onclick="profile()">
+      <i class='bx bx-user' ></i>
       <p></p>
     </div>
   </div>
@@ -38,6 +38,8 @@
     <h3>ᴛʀᴜ💲ᴛᴇᴅ ᴅᴇAʟs</h3>
 
     <h3 class="right">
+      <i class="bx bx-search" onclick="hsearch()"></i>
+     
       <i class='bx bx-log-out' onclick="logout()"></i>
       <i></i>
     </h3>
@@ -84,7 +86,8 @@
  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>  
  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
-    <script src="show.js"></script>
+ <script src="JS/nav.js"></script>
+    <script src="JS/show.js"></script>
 </body>
 
 </html>
