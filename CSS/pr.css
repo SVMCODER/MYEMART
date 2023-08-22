@@ -24,7 +24,7 @@ body {
   .product-details-card {
     background-color: #ffffff;
     border-radius: 5px;
-    height: fit-content;
+    height: 300px;
     border: 1px solid rgb(2, 3, 8);
     box-shadow: 0 2px 5px #505050;
     width: 50%; /* Each item takes up 50% of the container's width */
@@ -38,11 +38,18 @@ body {
   .product-card img.product-image,
   .product-details-card img.product-image {
     width: 60%;
-    height: 60%; /* Adjust the height to your desired value */
+    height: 60%;
+    max-height: 40%; /* Adjust the height to your desired value */
     object-fit: cover;
     border-radius: 5px;
   }
-  
+  .product-image{
+    width: 60%;
+    min-height: 100px;
+    max-height: 100px; /* Adjust the height to your desired value */
+    object-fit: cover;
+    border-radius: 5px;
+  }
   .product-card h2.product-title,
   .product-details-card h2.product-title {
     margin-top: 10px;

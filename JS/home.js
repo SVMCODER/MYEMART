@@ -72,7 +72,6 @@ function logout() {
 }
 const slider = document.getElementById('slider');
 const slideImage = document.getElementById('slideImage');
-const dotsContainer = document.getElementById('dotsContainer');
 const images = ['images/1.jpg', 'images/2.jpg', 'images/3.jpg'];
 let currentIndex = 0;
 
@@ -82,21 +81,9 @@ function showSlide(index) {
 
   currentIndex = index;
   slideImage.src = images[currentIndex];
-  updateDots(currentIndex);
 }
 
-function updateDots(currentIndex) {
-  dotsContainer.innerHTML = ''; // Clear existing dots
-  for (let i = 0; i < images.length; i++) {
-    const dot = document.createElement('div');
-    dot.classList.add('dot');
-    if (i === currentIndex) {
-      dot.classList.add('active');
-    }
-    dot.addEventListener('click', () => showSlide(i));
-    dotsContainer.appendChild(dot);
-  }
-}
+
 
 function nextSlide() {
   showSlide(currentIndex + 1);
@@ -107,15 +94,9 @@ function prevSlide() {
 }
 
 // Automatically switch to the next slide every 3 seconds
-setInterval(nextSlide, 3000);
+setInterval(nextSlide, 4000);
 
 // Initially show the first slide
 showSlide(currentIndex);
 
-// Add event listeners to left and right buttons
-const leftButton = document.getElementById('leftButton');
-leftButton.addEventListener('click', prevSlide);
-
-const rightButton = document.getElementById('rightButton');
-rightButton.addEventListener('click', nextSlide);
 

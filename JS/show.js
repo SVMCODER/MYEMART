@@ -7,70 +7,92 @@ var firebaseConfig = {
     appId: "1:797719983777:web:d7ffca1316891b51ec62e0"
   };
   firebase.initializeApp(firebaseConfig);
+ 
+
   const db = firebase.firestore();
 
-// Function to fetch and display product details
-const displayProductDetails = async () => {
-  const productDetailsElement = document.getElementById('productDetails');
-  productDetailsElement.innerHTML = '';
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const productId = urlParams.get('request-id');
-
-  const productDoc = await db.collection('products').doc(productId).get();
-  if (productDoc.exists) {
-    const product = productDoc.data();
-
-    const productCard = document.createElement('div');
-    productCard.className = 'product-details-card';
-    productCard.innerHTML = `
-      <img class="product-image" src="${product.mainImage}">
-      <div class="product-info">
-        <h2 class="product-title">${product.name}</h2>
-        <div class="product-price">
-        <div class='strike'>
-        ₹${product.originalPrice}
+  const displayProductDetails = async () => {
+    const productDetailsElement = document.getElementById('productDetails');
+    productDetailsElement.innerHTML = '';
+  
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('request-id');
+  
+    const productDoc = await db.collection('products').doc(productId).get();
+    if (productDoc.exists) {
+      const product = productDoc.data();
+  
+      const productCard = document.createElement('div');
+      productCard.className = 'product-details-card';
+      productCard.innerHTML = `
+          <div id="slider">
+            <img src="${product.mainImage}" class="slide" id="slideImage" />
+          </div>
+  
+        <div class="product-info">
+          <h2 class="product-title">${product.name}</h2>
+          <div class="product-price">
+            <div class='strike'>
+              ₹${product.originalPrice}
+            </div>
+            <div class="product-discount">Discount: ₹${product.discount}</div>
+            ₹${product.price}
+          </div>
+          
+          <button onclick="window.location.replace('buy.html?id=${productId}')">Buy Now</button>
+          <div class="product-specs">
+            <h3>Specifications:</h3>
+            <ul>
+              <li>${product.spec1}</li>
+              <li>${product.spec2}</li>
+              <li>${product.spec3}</li>
+              <li>${product.spec4}</li>
+            </ul>
+          </div>
+          <div class="product-details-content">
+            <h3>Product Details:</h3>
+            <ul>
+              <li>${product.detail1}</li>
+              <li>${product.detail2}</li>
+              <li>${product.detail3}</li>
+              <li>${product.detail4}</li>
+              <li>${product.detail5}</li>
+            </ul>
+          </div> 
         </div>
-        <div class="product-discount">Discount: ₹${product.discount}</div>
-        
-        ₹${product.price}</div>
-       <button onclick="window.location.replace('buy.html?id=${productId}')">Buy Now</button>
-        <div class="product-specs">
-          <h3>Specifications:</h3>
-          <ul>
-            <li>${product.spec1}</li>
-            <li>${product.spec2}</li>
-            <li>${product.spec3}</li>
-            <li>${product.spec4}</li>
-          </ul>
-        </div>
-        <div class="product-details-content">
-          <h3>Product Details:</h3>
-          <ul>
-            <li>${product.detail1}</li>
-            <li>${product.detail2}</li>
-            <li>${product.detail3}</li>
-            <li>${product.detail4}</li>
-            <li>${product.detail5}</li>
-          </ul>
-        </div>
-        <div class='images'>
-        <img class="product-image" src="${product.image1}">
-        <br>
-        <img class="product-image" src="${product.image2}">
-        <br>
-        <img class="product-image" src="${product.image3}">
-        <br>
-        <img class="product-image" src="${product.image4}">
-        </div>
-      </div>
-    `;
-
-    productDetailsElement.appendChild(productCard);
-  } else {
-    productDetailsElement.innerHTML = '<p>Product not found.</p>';
-  }
-};
-
-// Display product details when the page loads
-displayProductDetails();
+      `;
+  
+      productDetailsElement.appendChild(productCard);
+  
+      const slider = document.getElementById('slider');
+      const slideImage = document.getElementById('slideImage');
+      const images = [`${product.mainImage}`, `${product.image1}`, `${product.image2}`,`${product.image3}`,`${product.image4}`];
+      let currentIndex = 0;
+  
+      function showSlide(index) {
+        if (index < 0) index = images.length - 1;
+        if (index >= images.length) index = 0;
+  
+        currentIndex = index;
+        slideImage.src = images[currentIndex];
+      }
+  
+      function nextSlide() {
+        showSlide(currentIndex + 1);
+      }
+  
+      // Automatically switch to the next slide every 3 seconds
+      setInterval(nextSlide, 3000);
+  
+      // Initially show the first slide
+      showSlide(currentIndex);
+  
+      
+    } else {
+      productDetailsElement.innerHTML = '<p>Product not found.</p>';
+    }
+  };
+  
+  // Display product details when the page loads
+  displayProductDetails();
+  

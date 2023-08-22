@@ -6,7 +6,6 @@
 
 /* Style for the slider container */
 #slider {
-  position: relative;
   width: 100%;
   max-width: 600px; /* Adjust as needed */
   margin: 0 auto;
@@ -23,12 +22,9 @@
   height: auto;
   display: block;
 }
-
 /* Style for the navigation buttons */
 .nav-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  display: flex;
   padding: 10px;
   font-size: 20px;
   background-color: transparent;
@@ -54,29 +50,6 @@
 .nav-button:hover {
   background-color: transparent;
 }
-/* Style for the navigation dots container */
-.dots-container {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-}
-
-/* Style for the individual dot */
-.dot {
-  width: 10px;
-  height: 10px;
-  background-color: #ccc;
-  border-radius: 50%;
-  margin: 0 5px;
-  cursor: pointer;
-}
-
-.dot.active {
-  background-color: #0011ff; /* Active slide color */
-}
-
 html,body {
   outline-color: #000b1f;
   height: 94%;
