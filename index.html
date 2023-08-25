@@ -1,155 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ᴛʀᴜ💲ᴛᴇᴅ ᴅᴇAʟs Loading..</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ᴛʀᴜ💲ᴛᴇᴅ ᴅᴇAʟs Loading..</title>
 </head>
+
 <body> <br><br><br><br><br><br><br><br><br><br>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script   src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>  
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>  
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-    <script>
-      
-  window.addEventListener('load', () => {
-  const progressBar = document.querySelector('.progress-bar');
-  const progressContainer = document.querySelector('.progress-container');
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+  <script>
 
-  var firebaseConfig = {
-    apiKey: "AIzaSyCOA_2bf_b1o1nXSHZO5Re5DjSD66Pa6MY",
-    authDomain: "https://raona0-default-rtdb.firebaseio.com",
-    projectId: "raona0",
-    storageBucket: "raona0.appspot.com",
-    messagingSenderId: "797719983777",
-    appId: "1:797719983777:web:d7ffca1316891b51ec62e0"
-  };
-  
-  firebase.initializeApp(firebaseConfig);
+    window.addEventListener('load', () => {
+      const progressBar = document.querySelector('.progress-bar');
+      const progressContainer = document.querySelector('.progress-container');
 
-  // Simulate loading progress
-  let width = 0;
-  const interval = setInterval(() => {
-    width += 1;
-    progressBar.style.width = width + '%';
-    if (width >= 100) {
-      clearInterval(interval);
-      setTimeout(() => {
-        progressContainer.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Restore scrolling
-      }, 100); // Delay to show 100% progress for a moment
+      var firebaseConfig = {
+        apiKey: "AIzaSyCOA_2bf_b1o1nXSHZO5Re5DjSD66Pa6MY",
+        authDomain: "https://raona0-default-rtdb.firebaseio.com",
+        projectId: "raona0",
+        storageBucket: "raona0.appspot.com",
+        messagingSenderId: "797719983777",
+        appId: "1:797719983777:web:d7ffca1316891b51ec62e0"
+      };
+
+      firebase.initializeApp(firebaseConfig);
+
+      // // Simulate loading progress
+      // let width = 0;
+      // const interval = setInterval(() => {
+      //   width += 1;
+      //   progressBar.style.width = width + '%';
+      //   if (width >= 100) {
+      //     clearInterval(interval);
+      //     setTimeout(() => {
+      //       progressContainer.style.display = 'none';
+      //       document.body.style.overflow = 'auto'; // Restore scrolling
+      //     }, 100); // Delay to show 100% progress for a moment
+      //   }
+      // }, 30); // Adjust the interval speed if needed
+
+      // Firebase authentication state change listener
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          // User is signed in
+          window.location.replace('home.html');
+          // You can update UI or perform additional tasks for a signed-in user here
+        } else {
+          // User is signed out
+          window.location.replace('login.html');
+          // You can update UI or perform additional tasks for a signed-out user here
+        }
+      });
+    });
+
+  </script>
+  <style>
+    #wrap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: 0px auto;
+      height: 100px;
+      width: 200px;
+      top: 20%;
     }
-  }, 30); // Adjust the interval speed if needed
-  
-  // Firebase authentication state change listener
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      // User is signed in
-      window.location.replace('home.html');
-      // You can update UI or perform additional tasks for a signed-in user here
-    } else {
-      // User is signed out
-      window.location.replace('login.html');
-      // You can update UI or perform additional tasks for a signed-out user here
+
+    .ball {
+      position: absolute;
+      bottom: 0px;
+      display: block;
+      height: 20px;
+      width: 20px;
+      border: 1px solid #0004ff;
+      border-radius: 50%;
+      bottom: 10px;
+      background-color: #001aff;
+      float: left;
+      -webki-animation: bounce 1.5s infinite;
+  -moz-animation: bounce 1.5s infinite;
+  -ms-animation: bounce 1.5s infinite;
+  -o-animation: bounce 1.5s infinite;
+  animation: bounce 1.5s infinite;
     }
-  });
-});
 
-</script>
-<style>
-.center-container {
-position: relative;
-justify-content: center;
-align-items: center;
-background-color: #f0f0f0; /* Just for visualization */
-}
+    .ball:nth-child(2) {
+      margin-left: 30%;
+      border: 1px solid rgb(255, 217, 0);
+      background-color: rgb(255, 251, 0);
+      -webkit-animation-delay: 1.5s;
+      -moz-animation-delay: 1.5s;
+      -ms-animation-delay: 1.5s;
+      -o-animation-delay: 1.5s;
+      animation-delay: 1.5s;
+    }
 
-.centered-content {
-background-color: #fff;
-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-}
-.progress-container {
-width: 100%;
-max-width: 600px;
-height: 4px;
-background-color: #f0f0f0;
-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
+    .ball:nth-child(3) {
+      margin-left: 60%;
+      border: 1px solid rgb(255, 0, 85);
+      background-color: rgb(255, 0, 170);
+      -webkit-animation-delay: 1.7s;
+      -moz-animation-delay: 1.7s;
+      -ms-animation-delay: 1.7s;
+      -o-animation-delay: 1.7s;
+      animation-delay: 1.7s;
+    }
 
-.progress-bar {
-width: 0;
-height: 100%;
-background-color: #0004ff; /* Amazon orange color */
-transition: width 0.2s;
-}
+    .ball:nth-child(4) {
+      margin-left: 89%;
+      border: 1px solid rgb(9, 255, 0);
+      background-color: rgb(0, 255, 55);
+      -webkit-animation-delay: 1.9s;
+      -moz-animation-delay: 1.9s;
+      -ms-animation-delay: 1.9s;
+      -o-animation-delay: 1.9s;
+      animation-delay: 1.9s;
+    }
 
-.progress-container {
-background-color: #fff;
-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
 
-.progress-bar {
-background-color: #0004ff; /* Amazon orange color */
-}
+    @-webkit-keyframes bounce {
+      0% {
+        margin-bottom: 0px;
+      }
 
-.content {
-background-color: #fff;
-border-radius: 5px;
-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
+      50% {
+        margin-bottom: 50px;
+      }
+
+      100% {
+        margin-bottom: 0px;
+      }
+    }
+
+    @-moz-keyframes bounce {
+      0% {
+        margin-bottom: 0px;
+      }
+
+      50% {
+        margin-bottom: 50px;
+      }
+
+      100% {
+        margin-bottom: 0px;
+      }
+    }
+
+    @-o-keyframes bounce {
+      0% {
+        margin-bottom: 0px;
+      }
+
+      50% {
+        margin-bottom: 50px;
+      }
+
+      100% {
+        margin-bottom: 0px;
+      }
+    }
+
+    @-ms-keyframes bounce {
+      0% {
+        margin-bottom: 0px;
+      }
+
+      50% {
+        margin-bottom: 50px;
+      }
+
+      100% {
+        margin-bottom: 0px;
+      }
+    }
+
+    @-keyframes bounce {
+      0% {
+        margin-bottom: 0px;
+      }
+
+      50% {
+        margin-bottom: 50px;
+      }
+
+      100% {
+        margin-bottom: 0px;
+      }
+    }
+
+
+
+
+    .center-container {
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+      /* Just for visualization */
+    }
+
+    .centered-content {
+      background-color: #fff;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .progress-container {
+      width: 100%;
+      max-width: 600px;
+      height: 4px;
+      background-color: #f0f0f0;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .progress-bar {
+      width: 0;
+      height: 100%;
+      background-color: #0004ff;
+      /* Amazon orange color */
+      transition: width 0.2s;
+    }
+
+    .progress-container {
+      background-color: #fff;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .progress-bar {
+      background-color: #0004ff;
+      /* Amazon orange color */
+    }
+
+    .content {
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
     img {
-        width: 90%;
-        height: auto;
-        border-radius: 60%;
+      width: 90%;
+      height: auto;
+      border-radius: 60%;
     }
+
     body {
-        justify-content: center;
-        place-content: center;
-        align-items: center;
-        justify-content: space-around;
-        background-color: rgb(0, 0, 2);
-        color: rgb(255, 255, 255);
-        align-items: center;
+      justify-content: center;
+      place-content: center;
+      align-items: center;
+      justify-content: space-around;
+      background-color: rgb(0, 0, 2);
+      color: rgb(255, 255, 255);
+      align-items: center;
     }
+
     .sed {
-        bottom: 0;
-        margin-left: 20px;
-        position: fixed;
-        display: flex;
-        justify-content: center;
-    
+      bottom: 0;
+      margin-left: 20px;
+      position: fixed;
+      display: flex;
+      justify-content: center;
+
     }
+
     .sed h5 {
-        float: left;
+      float: left;
     }
-    .sed h4{
-        float: right;
+
+    .sed h4 {
+      float: right;
     }
+
     .h {
-        margin-left: 2px;
+      margin-left: 2px;
     }
-</style>
-    <div class="sa" align="center">
-        
-        <img src="images/logo.png" alt="">
-        <h4>Loading, Please wait...</h4>
-    </div>
-    <div class="center-container">
-        <div class="centered-content">
-            <div class="progress-container">
-                <div class="progress-bar"></div>
-              </div>
-            </div>
-      </div>
-      <div class="sed">
-        <h4>Trusted Deals India - v1.0.0</h4>
-      </div>
+  </style>
+  <div class="sa" align="center">
+
+    <img src="images/logo.png" alt="">
     
- 
+  </div>
+  <div class="center-container">
+    <div id="wrap">
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <div class="ball"></div>
+      <div class="ball"></div>
+    </wrap>
+    <!-- <div class="centered-content">
+      <div class="progress-container">
+        <div class="progress-bar"></div>
+      </div>
+    </div> -->
+    
+  </div>
+  <div class="sed">
+    <h4>Trusted Deals India - v1.0.0</h4>
+  </div>
+
+
 </body>
+
 </html>

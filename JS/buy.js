@@ -41,6 +41,14 @@ try {
             <input type="email" id="email" placeholder="Email Address*" required>
            
           </form>
+          
+          <div class="container" align="center">
+	
+          <h2>PAYMENT METHOD</h2>
+          <h3 align='left' class='bx bx-check'> Cash On Delivery</h3>
+          
+        </div>
+
         </div>
         <button type="button" id="buy-button" onclick='buy()'>Buy Now</button>
       </div>
@@ -186,3 +194,11 @@ async function buy() {
     });
   }
 }
+
+
+{/* <li>
+            <input type="radio" id="s-option" name="selector">
+            <label for="s-option">Bacon</label>
+            
+            <div class="check"><div class="inside"></div></div>
+          </li> */}

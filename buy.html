@@ -47,6 +47,7 @@
     
   </div> 
   <style>
+  
     button {
   width: fit-content;
   border: none;
@@ -63,7 +64,7 @@
 }
 
 button, button::after {
-  width:100%; /*Make sure the animation is over the whole element*/
+   /*Make sure the animation is over the whole element*/
 
   -webkit-animation-name: ShineAnimation;
   -webkit-animation-duration: 5s;
@@ -93,6 +94,14 @@ button, button::after {
       background-position:250px 250px;
   }
 }
+.product-card img.product-image,
+  .product-details-card img.product-image {
+    
+    height: 300px; /* Adjust the height to your desired value */
+    width: 300px;
+    object-fit: contain;
+    border-radius: 5px;
+  }
   </style>
   <script   src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>

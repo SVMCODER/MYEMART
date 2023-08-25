@@ -14,14 +14,18 @@ body {
   
   .product-card,
   .product-details-card {
-    
-    background-color: rgb(255, 255, 255);
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    width: 90%;
-    margin-bottom: 20px;
+   background-color: white;
+   border-radius: 5px;
+    border: 1px solid rgb(2, 3, 8);
+    box-shadow: 0 2px 5px #505050;
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    padding: 0.6em 1em;
+   align-items: center;
+   justify-content: center;
+    margin-bottom: 5px;
   }
+  
+ 
   .popup {
     position: fixed;
     top: 0;
@@ -51,8 +55,10 @@ body {
   
   .product-card img.product-image,
   .product-details-card img.product-image {
-    min-width: 200%;
-    min-height: 200%;
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+  
     object-fit: cover;
     border-radius: 5px;
   }
@@ -222,3 +228,5 @@ body {
   .product-title {
     text-align: center;
   }
+
+
