@@ -21,8 +21,8 @@
       <i class='bx bx-cart'></i>
       <p></p>
     </div>
-    <div class="tab" onclick="offers()">
-      <i class='bx bx-heart'></i>
+    <div class="tab active purple">
+      <i class='bx bxs-search'></i>
       <p></p>
     </div>
     <div class="tab" onclick="support()">
@@ -38,17 +38,17 @@
     <h3>ᴛʀᴜꜱᴛᴇᴅ ᴅᴇᴀʟꜱ</h3>
 
     <h3 class="right">
-      <i class="bx bx-search" style="color: #ff014d;" onclick="hsearch()"></i>
+      <i class="bx bx-bell"  onclick="offers()"></i>
      
       <i class='bx bx-log-out' onclick="logout()"></i>
       <i></i>
     </h3>
   </div>
   <br><br><br>
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search by product title...">
-    <button id="searchButton">Search</button>
-  </div>
+  <div class="h" align="center"><div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search Products By Title...">
+    <button id="searchButton" class="bx bx-search"></button>
+  </div></div>
     <div class="product-list" id="productList" align="center">
       <!-- Products will be displayed here -->
     </div>
@@ -63,26 +63,95 @@ header {
 }
 
 .search-container {
+  border: 3px solid;
+  border-image-slice: 1;
+  border-width: 2px;
+  border-image-source: linear-gradient(to left, #fc01e7, #d53a9d);
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    background-color: #ffffff;
+    border-radius: 6px;
+  background-color: #ffffff;
   text-align: center;
   margin: 20px 0;
+  width: 66%;
 }
-
+#searchInput::placeholder {
+  color: rgb(0, 0, 0);
+}
 #searchInput {
   padding: 10px;
   width: 60%;
   outline: none;
   border: none;
+  box-shadow: none;
 }
 
 #searchButton {
+  box-shadow: none;
   padding: 10px;
-  background-color: #0106ff;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
   border: none;
   cursor: pointer;
   outline: none;
 }
+.product-card {
+  border: 3px solid;
+  border-image-slice: 1;
+  border-width: 2px;
+  border-image-source: linear-gradient(to left, #fc01e7, #d53a9d);
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    background-color: #ffffff;
+    border-radius: 6px;
+}
+.product-card button {
+  width: fit-content;
+  border: none;
+  padding: 0.6em 1em;
+  border-radius: 4px;
+  margin: 10px 0;
+  box-shadow: 0px 5px 3px -4px #00000e;  
+  background-color: #0044ff;
+  color: #ffffff;
+  font-size: 17px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
 
+ .product-card button, button::after {
+  width:100%; /*Make sure the animation is over the whole element*/
 
+  -webkit-animation-name: ShineAnimation;
+  -webkit-animation-duration: 5s;
+  
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: cubic-bezier(.12,.89,.98,.47);
+}
+
+@-webkit-keyframes ShineAnimation{
+  from {
+      background-repeat:no-repeat;
+      background-image:-webkit-linear-gradient(
+          top left,
+          rgba(255, 255, 255, 0.0) 0%,
+          rgba(255, 255, 255, 0.0) 45%,
+          rgba(255, 255, 255, 0.5) 48%,
+          rgba(255, 255, 255, 0.8) 50%,
+          rgba(255, 255, 255, 0.5) 52%,
+          rgba(255, 255, 255, 0.0) 57%,
+          rgba(255, 255, 255, 0.0) 100%
+      );
+      background-position:-250px -250px;
+      background-size: 250px 250px
+  }
+  to {
+      background-repeat:no-repeat;
+      background-position:250px 250px;
+  }
+}
     .search-bar {
       display: flex;
       align-items: center;

@@ -1,11 +1,9 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
   }
   
   .container {
-    max-width: 1200px;
+    max-width: 99%;
     margin: 20px auto;
     padding: 5px;
   }
@@ -16,17 +14,45 @@ body {
   
   .product-card,
   .product-details-card {
+    
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 15px;
+    width: 90%;
     margin-bottom: 20px;
+  }
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    object-fit: contain;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-image {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .popup-close {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: rgb(0, 0, 0);
   }
   
   .product-card img.product-image,
   .product-details-card img.product-image {
-    width: 100%;
-    height: fit-content; /* Adjust the height to your desired value */
+    min-width: 200%;
+    min-height: 200%;
     object-fit: cover;
     border-radius: 5px;
   }
@@ -35,9 +61,9 @@ body {
   .product-details-card h2.product-title {
     margin-top: 10px;
     font-size: 18px;
-     overflow: hidden;
+    text-align: center;
+    justify-content: center;
     color: #4d4d4d;
-     display: -webkit-box;
   }
   
   
@@ -90,14 +116,13 @@ body {
     color: #111;
   }
   
-  .product-details-card .product-specs ul,
-  .product-details-card .product-details-content ul {
+  .product-specs ul,.product-details-content ul {
     padding: 0.6em 1em;
     margin: 0;
+    list-style: circle;
     text-align: left;
     color: #444;
   }
-  
   .product-details-card .product-specs ul li,
   .product-details-card .product-details-content ul li {
     margin-bottom: 5px;
@@ -142,6 +167,12 @@ body {
   }
 
   .order-item {
+    border: 3px solid;
+  border-image-slice: 1;
+  border-width: 2px;
+  border-image-source: linear-gradient(to left, #fc01e7, #d53a9d);
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
     display: flex;
     align-items: center;
     margin-bottom: 20px;
@@ -162,6 +193,7 @@ body {
   }
   
   .order-item-title {
+    
     text-align: left;
     font-size: 18px;
     font-weight: bold;
@@ -187,4 +219,6 @@ body {
   .arriving-status {
     color: green;
   }
-  
+  .product-title {
+    text-align: center;
+  }

@@ -27,13 +27,15 @@ const auth = firebase.auth();
           <h2 class="product-title" onclick="window.location.replace('item.html?request-id=${doc.id}')">${product.name}</h2>
           <div class="product-price" onclick="window.location.replace('item.html?request-id=${doc.id}')">₹${product.price}</div>
           <div class="product-discount" onclick="window.location.replace('item.html?request-id=${doc.id}')">FREE SHIPPING</div>
-          <button class="buy-now-btn" onclick="window.location.replace('item.html?request-id=${doc.id}')">Buy Now</button>
+          <button class="bx bx-cart" onclick="window.location.replace('item.html?request-id=${doc.id}')"> 𝙱𝚞𝚢</button>
         `;
 
         productListElement.appendChild(productCard);
+       
       });
+      
+      
     };
-
     // Display products when the page loads
     displayProducts();
 // Updated logout function with confirmation

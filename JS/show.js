@@ -8,7 +8,7 @@ var firebaseConfig = {
   };
   firebase.initializeApp(firebaseConfig);
  
-
+  let slideshowInterval; // Global variable to hold the interval ID
   const db = firebase.firestore();
 
   const displayProductDetails = async () => {
@@ -75,8 +75,24 @@ var firebaseConfig = {
   
         currentIndex = index;
         slideImage.src = images[currentIndex];
+        slideImage.src = images[currentIndex];
+  slideImage.addEventListener('click', () => openPopup(currentIndex));
       }
-  
+      function openPopup(index) {
+        // Clear the slideshow interval when the popup is opened
+        clearInterval(slideshowInterval);
+    
+        const popup = document.createElement('div');
+        popup.className = 'popup';
+        popup.innerHTML = `
+          <span class="popup-close" onclick="closePopup()">&times;</span>
+          <img src="${images[index]}" class="popup-image" />
+        `;
+    
+        document.body.appendChild(popup);
+      }
+     
+      
       function nextSlide() {
         showSlide(currentIndex + 1);
       }
@@ -87,12 +103,11 @@ var firebaseConfig = {
       // Initially show the first slide
       showSlide(currentIndex);
   
-      
     } else {
       productDetailsElement.innerHTML = '<p>Product not found.</p>';
     }
   };
-  
+
   // Display product details when the page loads
   displayProductDetails();
-  
+ 
