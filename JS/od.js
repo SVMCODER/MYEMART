@@ -43,7 +43,8 @@ async function fetchMyOrders(user) {
     orders.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
 
     const ordersList = document.getElementById("ordersList");
-
+    ordersList.innerHTML = '<div class="loading"></div>'; // Show loading spinner
+  
     // Clear existing ordersList content
     ordersList.innerHTML = "";
     if (orders.length === 0) {

@@ -13,10 +13,10 @@ body {
     flex-wrap: wrap; 
     flex-basis: 22.22222% ;
   }
-  
   h1 {
     text-align: center;
   }
+  
   .ssw {
     justify-content: center;
   }

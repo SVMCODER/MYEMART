@@ -15,13 +15,15 @@ const productId = urlParams.get('id');
 
 const displayProductDetails = async () => {
 const productDetailsElement = document.getElementById('productDetails');
-productDetailsElement.innerHTML = '';
+productDetailsElement.innerHTML = '<div class="loading"></div>'; // Show loading spinner
 
 try {
   const productDoc = await db.collection('products').doc(productId).get();
   if (productDoc.exists) {
     const product = productDoc.data();
+    productDetailsElement.innerHTML = '';
 
+  
     const productCard = document.createElement('div');
     productCard.className = 'product-details-card';
     productCard.innerHTML = `
@@ -50,7 +52,7 @@ try {
         </div>
 
         </div>
-        <button type="button" id="buy-button" onclick='buy()'>Buy Now</button>
+        <button type="button" id="buy-button" class='bx bx-cart' onclick='buy()'> 𝙱𝚞𝚢</button>
       </div>
     `;
 

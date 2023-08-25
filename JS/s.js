@@ -69,13 +69,14 @@ searchButton.addEventListener('click', async () => {
 // Function to display matched products
 const displayMatchedProducts = (matchedProducts) => {
   const productListElement = document.getElementById('productList');
-  productListElement.innerHTML = '';
 
   if (matchedProducts.length === 0) {
     const noProductsMessage = document.createElement('p');
     noProductsMessage.textContent = 'No matching products found.';
     productListElement.appendChild(noProductsMessage);
   } else {
+    productListElement.innerHTML = '';
+
     matchedProducts.forEach(product => {
       const productCard = document.createElement('div');
       productCard.className = 'ssw product-card'; // Apply the .ssw class
@@ -84,7 +85,7 @@ const displayMatchedProducts = (matchedProducts) => {
         <h2 class="product-title" onclick="window.location.replace('item.html?request-id=${product.id}')">${product.name}</h2>
         <div class="product-price" onclick="window.location.replace('item.html?request-id=${product.id}')">₹${product.price}</div>
         <div class="product-discount" onclick="window.location.replace('item.html?request-id=${product.id}')">FREE SHIPPING</div>
-        <button class="buy-now-btn" onclick="window.location.replace('item.html?request-id=${product.id}')">Buy Now</button>
+        <button class="buy-now-btn bx bx-cart" onclick="window.location.replace('item.html?request-id=${product.id}')"> 𝙱𝚞𝚢</button>
       `;
 
       productListElement.appendChild(productCard);

@@ -53,8 +53,10 @@
     
     
     <h3>Trending</h3>
-      <div class="container" id="productList"><div id="loadingSpinner" class="loading-spinner" align="center"> <br>
-        <div class="spinner"></div></div>
+      <div class="container" id="productList" align="center">
+
+      </div>
+      <div id="dh"></div>
     </div>
 
     <br><br><br>
@@ -77,7 +79,7 @@
 }
 
 button, button::after {
-  width:100%; /*Make sure the animation is over the whole element*/
+   /*Make sure the animation is over the whole element*/
 
   -webkit-animation-name: ShineAnimation;
   -webkit-animation-duration: 5s;
@@ -158,6 +160,7 @@ button, button::after {
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
 }
+
 </style>
  
  <script   src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>

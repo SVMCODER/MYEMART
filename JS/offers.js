@@ -16,8 +16,8 @@ async function fetchMessagesForUser(userId) {
     const querySnapshot = await messagesRef.where("userIds", "array-contains", userId).get();
 
     const notificationsList = document.getElementById("notificationsList");
-    notificationsList.innerHTML = ""; // Clear previous notifications
-
+    notificationsList.innerHTML = "<div class='loading'></div>"; // Clear previous notifications
+    
     querySnapshot.forEach((doc) => {
       const messageData = doc.data();
       const notificationItem = document.createElement("div");

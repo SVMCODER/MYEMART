@@ -49,9 +49,7 @@
   <div class="all-products" align="center">
 
     
-      <div id="productDetails" class="container">
-        <div id="loadingSpinner" class="loading-spinner" align="center"> <br>
-        <div class="spinner"></div></div>
+      <div id="productDetails" class="container"></div>
     </div>
 
     <br><br><br>
@@ -101,7 +99,7 @@
 }
 
 button, button::after {
-  width:100%; /*Make sure the animation is over the whole element*/
+   /*Make sure the animation is over the whole element*/
 
   -webkit-animation-name: ShineAnimation;
   -webkit-animation-duration: 5s;
@@ -109,7 +107,236 @@ button, button::after {
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: cubic-bezier(.12,.89,.98,.47);
 }
+/* Main product image */
+#slider {
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+}
 
+.slide {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Thumbnails */
+.thumbnail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  max-height: 50px;
+}
+
+.thumbnail {
+  width: 30px;
+  height: 30px;
+  margin: 0 5px;
+  object-fit: contain;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.thumbnail.active {
+  transform: scale(0.5); /* Slightly bigger size for active thumbnail */
+  border: 0.2px solid #1223c2;
+}
+
+/* Popup */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.popup-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.popup-image {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+/* Slideshow buttons */
+.popup-slider-btn {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  border: none;
+  padding: 8px;
+  font-size: 20px;
+  border-radius: 50%;
+  margin: 0 8px;
+  cursor: pointer;
+}
+
+/* Dots for pagination */
+.popup-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.popup-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.popup-dot.active {
+  background-color: #ff6600;
+}
+
+/* Popup Slider */
+.popup-slider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.popup-slider-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.popup-slider-btn-left {
+  color: #fff;
+  margin-right: 20px;
+}
+
+.popup-slider-btn-right {
+  color: #fff;
+  margin-left: 20px;
+}
+
+.popup-slider-btn:hover {
+  color: #ff6600;
+}
+
+/* Dots for Pagination */
+.popup-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.popup-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #e0e0e0;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.popup-dot.active {
+  background-color: #ff6600;
+}
+
+/* Thumbnail Styling */
+.thumbnail-container {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.thumbnail {
+  width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  object-fit: cover;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.thumbnail.active {
+  transform: scale(1.1);
+  border-color: #ff6600;
+}
+
+/* Popup Image */
+.popup-image {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+/* Rest of your CSS styles */
+.thumbnail {
+  min-width: 40px; /* Adjust the width as needed */
+  min-height: 40px; /* Adjust the height as needed */
+  margin: 5px;
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.thumbnail.active {
+  transform: scale(1.2);
+  border: 2px solid #ff6600;
+}
+/* Thumbnails */
+.thumbnail-container {
+  display: flex;
+  max-height: 50px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+ 
+}
+.thumbnail img {
+  padding:0.6em 1em ;
+}
+.thumbnail {
+  max-width: 50px;
+  max-height: 50px;
+  margin: 0 5px; /* Add some space between thumbnails */
+  object-fit: cover;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.thumbnail.active {
+  padding:0.2em 0.2em ;
+  transform: scale(1.2);
+  border: 2px solid #ff0055;
+}
 @-webkit-keyframes ShineAnimation{
   from {
       background-repeat:no-repeat;
@@ -138,7 +365,7 @@ button, button::after {
 }
 #slider img {
   width: 300px;
-  height: 300px;
+  height: 310px;
   object-fit: contain;
 }
 /* Style for the slider container */
