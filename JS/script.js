@@ -22,11 +22,10 @@ async function login() {
     const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
     // User is signed in
     const user = userCredential.user;
-    console.log("User logged in:", user);
     Swal.fire({
       icon: "success",
-      title: "Success",
-      text: "User logged in successfully!"
+      title: "Logged In!",
+      text: "Please wait..."
     });
     window.location.href = "home.html";
   } catch (error) {
@@ -36,24 +35,23 @@ async function login() {
 
     if (errorCode === "auth/user-not-found") {
       const { value: username } = await Swal.fire({
-        title: "Create New Account",
-        text: "Username",
+        title: "Create account",
+        text: "Enter your username",
         input: "text",
         showCancelButton: true,
-        confirmButtonText: "Sign Up",
+        confirmButtonText: "Done",
         showLoaderOnConfirm: true,
         preConfirm: async (username) => {
           // Check if the username already exists
           const exists = await checkUsernameExists(username);
           if (exists) {
-            Swal.showValidationMessage("Username already exists.");
+            Swal.showValidationMessage("Username not available");
             return false;
           }
 
           try {
             const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
             const user = userCredential.user;
-            console.log("User signed up:", user);
             await user.updateProfile({
               displayName: username
             });
@@ -64,7 +62,7 @@ async function login() {
             return username;
           } catch (error) {
             console.error("Sign up error:", error);
-            Swal.showValidationMessage(`Sign up failed: ${error.message}`);
+            Swal.showValidationMessage(`Sign up Error`);
             return false;
           }
         },
@@ -72,11 +70,12 @@ async function login() {
       });
 
       if (username) {
-        Swal.fire({
-          icon: "success",
-          title: "Success",
-          text: "User signed up successfully!"
-        });
+        
+    Swal.fire({
+      icon: "success",
+      title: "Logged In!",
+      text: "Please wait..."
+    });
         window.location.href = "home.html";
       }
     } else {
