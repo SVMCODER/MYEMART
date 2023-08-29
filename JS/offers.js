@@ -7,8 +7,38 @@ var firebaseConfig = {
     appId: "1:797719983777:web:d7ffca1316891b51ec62e0"
   };
   firebase.initializeApp(firebaseConfig);
-
+  notificationsList.innerHTML = "<div class='loading'></div>"; // Clear previous notifications
   const db = firebase.firestore();
+
+
+
+// Function to format timestamps as "time ago"
+function formatTimeAgo(date) {
+  var seconds = Math.floor((new Date() - date) / 1000);
+  var interval = Math.floor(seconds / 31536000);
+
+  if (interval > 1) {
+    return interval + ' years ago';
+  }
+  interval = Math.floor(seconds / 2592000);
+  if (interval > 1) {
+    return interval + ' months ago';
+  }
+  interval = Math.floor(seconds / 86400);
+  if (interval > 1) {
+    return interval + ' days ago';
+  }
+  interval = Math.floor(seconds / 3600);
+  if (interval > 1) {
+    return interval + ' hours ago';
+  }
+  interval = Math.floor(seconds / 60);
+  if (interval > 1) {
+    return interval + ' minutes ago';
+  }
+  return Math.floor(seconds) + ' seconds ago';
+}
+
 // Function to fetch and display messages for the current user
 async function fetchMessagesForUser(userId) {
   try {
@@ -16,19 +46,23 @@ async function fetchMessagesForUser(userId) {
     const querySnapshot = await messagesRef.where("userIds", "array-contains", userId).get();
 
     const notificationsList = document.getElementById("notificationsList");
-    notificationsList.innerHTML = "<div class='loading'></div>"; // Clear previous notifications
-    
+    notificationsList.innerHTML = ""; // Clear previous notifications
+
     querySnapshot.forEach((doc) => {
       const messageData = doc.data();
       const notificationItem = document.createElement("div");
       notificationItem.classList.add("notification-item");
-      
+
+      const sentTimestamp = messageData.timestamp; // Assuming timestamp is already a valid Date object
+
+      const formattedTimestamp = formatTimeAgo(sentTimestamp);
+
       // Include the image URL if available
       let imageElement = "";
       if (messageData.imageURL) {
         imageElement = `<img src="${messageData.imageURL}" alt="Message Image" class="message-image">`;
       }
-      
+
       notificationItem.innerHTML = `
         ${imageElement}
         <h3>${messageData.message}</h3>

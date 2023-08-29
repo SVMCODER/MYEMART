@@ -41,8 +41,8 @@
      </h3>
   </div>
   <br><br><br> 
-  <h3 align="center">Offers & Notifications</h3>
-  <div class="container" style="color: black;" id="notificationsList" align="center">
+  <h3 align="center">Notifications</h3>
+  <div class="" style="color: black;" id="notificationsList" align="center">
   </div>
   <script   src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -54,25 +54,31 @@
   <script src="JS/nav.js"></script>
 <br><br><br>
 <style>
+  .ftr  {
+    text-align: right;
+  }
 /* Style for the notification container */
 #notificationsList {
   max-width: fit-content;
   margin: 0 auto;
+  max-width: 90%;
   min-width: 90%;
+  color: black;
+  
 }
 
 /* Style for each notification item */
 .notification-item {
-  background-image: linear-gradient(rgb(1, 0, 12), rgb(7, 0, 82));
-  border: 1px solid #080808;
+  background-color: #ffffff;
   border-radius: 4px;
   margin-bottom: 15px;
   padding: 15px;
+  box-shadow: 0 2px 5px #505050;
 }
 
 /* Style for the image within the notification */
 .notification-item img {
-  width: 99%;
+  width: 80%;
   height: auto;
   margin-bottom: 10px;
 }
@@ -81,7 +87,7 @@
 .notification-item h3 {
   margin: 0;
   font-size: 18px;
-  color: #ffffff;
+  color: #000000;
 }
 
 

@@ -10,6 +10,7 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+ 
   <div class="tab-nav-container">
     
     <div class="tab" onclick="upload()">
@@ -29,9 +30,12 @@
      </h3>
   </div>
   <br><br><br> 
-  <h3 align="center">ORDERS</h3>
+  <div id="odsa">
+    <h3 align="center">ORDERS</h3>
   <div id="oL" class="cands" align="center">
-    No Orders
+    
+  </div>
+  <div id="dh" align="center"></div>
   </div>
   <script   src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -41,7 +45,54 @@
   <script src="JS/app.min.js"></script>
   <script src="JS/nav.min.js"></script>
 <br><br><br><br><br>
+<script>
+   if (localStorage.getItem('loggedinf') != 'yes') {
+    
+      document.getElementById('odsa').innerHTML = `
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h2 align="center">Not Inough Permissions!</h2>`
+      Swal.fire({
+        icon: 'error',
+        title: 'Insufficient Permissions!',
+        text: 'You do not have enough permissions to view this.',
+      });
+  }
+</script>
 <style>
+  table {
+      color: rgb(0, 0, 0);
+      width: 100%;
+      background-color: rgb(48, 61, 248);
+      margin: 0;
+      border-radius: 5px;
+      padding: 0;
+      text-align: center;
+
+  }
+  th{
+    
+    padding: 10px;
+      margin: 0;
+      background-color: rgb(48, 61, 248);
+      color: rgb(255, 255, 255);
+  }
+  td {
+    
+    text-align: left;
+      padding: 10px;
+      background-color: white;
+  }
+</style>
+<style>
+  #sta {
+    color: rgb(0, 180, 45);
+    font-weight: bolder;
+  }
   .order-itemn{
     color: black;
     text-align: left;

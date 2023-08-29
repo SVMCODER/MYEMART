@@ -35,21 +35,19 @@ try {
         <div class="product-price">Price: ₹${product.price}</div>
         <div class="product-shipping-charges">Shipping Charges: ₹${product.shippingCharges}</div>
         <div class="shipping-form" style="color: black;">
+          <button class='bx bx-refresh' id='sae' onclick='window.location.href ="profile.html"'> Change Information</button>
+          <br>
+          <span id="shippingForm">
           <h2>Shipping Information</h2>
-          <form id="shippingForm">
             <input type="text" id="buyerName" placeholder="Full Name*" required>
             <textarea id="shippingAddress" placeholder="Shipping Address*" required></textarea>
             <input type="number" id="phoneNumber" placeholder="Phone Number*" required>
             <input type="email" id="email" placeholder="Email Address*" required>
            
-          </form>
-          
-          <div class="container" align="center">
-	
+          </span>
           <h2>PAYMENT METHOD</h2>
           <h3 align='left' class='bx bx-check'> Cash On Delivery</h3>
           
-        </div>
 
         </div>
         <button type="button" id="buy-button" class='bx bx-cart' onclick='buy()'> 𝙱𝚞𝚢</button>
@@ -102,7 +100,7 @@ async function buy() {
   const shippingForm = document.getElementById("shippingForm");
   const buyerName = document.getElementById("buyerName").value;
   document.getElementById('buy-button').disabled = true;
-  document.getElementById('buy-button').innerHTML = 'Placing Order...';
+  document.getElementById('buy-button').innerHTML = ' Wait...';
 
   try {
     const urlParams = new URLSearchParams(window.location.search);
@@ -140,6 +138,7 @@ async function buy() {
         phoneNumber: phoneNumber,
         email: email,
       });
+      document.getElementById('sae').style.visibility = 'none'
     } else {
       // Retrieve the saved shipping data for the user
       const userDoc = await db.collection("shippingAddresses").doc(userId).get();
@@ -160,7 +159,15 @@ async function buy() {
         return; // Exit the function without proceeding further
       }
     }
-
+// Function to generate a random ID in the form "1111-2222-3333-4444"
+function generateRandomId() {
+  const sections = [];
+  for (let i = 0; i < 4; i++) {
+    const section = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+    sections.push(section);
+  }
+  return sections.join('-');
+}
     const order = {
       userId: userId, // Associate the order with the user
       productId: productId,
@@ -174,8 +181,9 @@ async function buy() {
       mainImage: product.mainImage,
       status: "confirmed",
     };
-
-    await db.collection("orders").add(order);
+    const orderId = generateRandomId(); // Generate a random order ID
+    const orderRef = db.collection("orders").doc(orderId);
+orderRef.set(order)
 
     await Swal.fire({
       icon: "success",
