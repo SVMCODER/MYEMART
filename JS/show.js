@@ -88,7 +88,7 @@ function closePopup() {
 
 // Function to start the slideshow
 function startSlideshow() {
-  slideshowInterval = setInterval(nextSlide, 3000);
+  slideshowInterval = setInterval(nextSlide, 10000);
 }
   const displayProductDetails = async () => {
     const productDetailsElement = document.getElementById('productDetails');
@@ -105,22 +105,30 @@ function startSlideshow() {
         productDetailsElement.innerHTML = '<div class="loading"></div>'; // Show loading spinner
   
         const productCard = document.createElement('div');
+        document.title=`ᴛʀᴜꜱᴛᴇᴅ ᴅᴇᴀʟꜱ.in | ${product.name}`
         productCard.className = 'product-details-card';
         productCard.innerHTML = `
           <div id="slider">
-            <img src="${product.mainImage}" class="slide" id="slideImage" />
+            <img src="${product.mainImage}" class="slide" id="slideImage" onclick="openPopup(0)" />
             <br>
+            
+            <hr>
+            <br>
+            
           </div>
           <div class="product-info">
+          <hr>
             <h2 class="product-title">${product.name}</h2>
+            
+            <hr>
             <div class="product-price">
-              <div class='strike'>
+              <h4 class='strike'>
                 ₹${product.originalPrice}
-              </div>
-              <div class="product-discount">Discount: ₹${product.discount}</div>
-              ₹${product.price}
+              </h4>
+              <h4 class="product-discount">Discount: ₹${product.discount}</h4>
+              <h2>₹${product.price}</h2>
             </div>
-            <button class="bx bx-cart" onclick="window.location.replace('buy.html?id=${productId}')"> 𝙱𝚞𝚢</button>
+            <hr>
             <div class="product-specs">
               <h3>Specifications:</h3>
               <ul>
@@ -130,6 +138,7 @@ function startSlideshow() {
                 <li>${product.spec4}</li>
               </ul>
             </div>
+            <hr>
             <div class="product-details-content">
               <h3>Product Details:</h3>
               <ul>
@@ -140,10 +149,22 @@ function startSlideshow() {
                 <li>${product.detail5}</li>
               </ul>
             </div>
+            <hr>
+            <div class='gallery'>
+            <h3>Gallery</h3>
+            <img src='${product.mainImage}'>
+            <img src='${product.image1}'>
+            <img src='${product.image2}'>
+            <img src='${product.image3}'>
+            <img src='${product.image4}'>
+            </div>
           </div>
         `;
   
         productDetailsElement.innerHTML = '';
+        document.getElementById('io').innerHTML = `
+        <div class="bx bx-share tab" id="copy-url-button" onclick="copylink()"> Share</div>
+        <div class="bx bx-cart tab" id="oi" onclick="window.location.replace('buy.html?id=${productId}')"> Buy</div>`
         productDetailsElement.appendChild(productCard);
   
         images = [product.mainImage, product.image1, product.image2, product.image3, product.image4];
@@ -155,8 +176,9 @@ function startSlideshow() {
 const thumbnailContainer = document.createElement('div');
 thumbnailContainer.className = 'thumbnail-container';
 thumbnailContainer.innerHTML = images
-  .map((img, i) => `<img src="${img}" class="thumbnail ${i === currentIndex ? 'active' : ''}" onclick="gotoSlide(${i})" />`)
+  .map((img, i) => `<img src="${img}" class="thumbnail ${i === currentIndex ? 'active' : ''}" onclick="gotoSlide(${i})"/>`)
   .join('');
+
 
 slider.appendChild(thumbnailContainer);
 // function showPopupSlide(index) {
@@ -187,7 +209,7 @@ slider.appendChild(thumbnailContainer);
 // slider.appendChild(nextButton);
   
 // Rest of your previous code
-
+startSlideshow();
 function showSlide(index) {
   if (index < 0) index = images.length - 1;
   if (index >= images.length) index = 0;
@@ -225,6 +247,7 @@ function showSlide(index) {
     popup.className = 'popup';
     popup.innerHTML = `
       <span class="popup-close" onclick="closePopup()">&times;</span>
+      
       <div class="popup-slider">
         <button class="popup-slider-btn popup-slider-btn-left" onclick="previousPopupSlide()">&#10094;</button>
         <img src="${images[index]}" class="popup-image" />
@@ -258,9 +281,6 @@ function openPopup(index) {
       <button class="popup-slider-btn popup-slider-btn-left" onclick="previousPopupSlide()">&#10094;</button>
       <img src="${images[index]}" class="popup-image" />
       <button class="popup-slider-btn popup-slider-btn-right" onclick="nextPopupSlide()">&#10095;</button>
-    </div>
-    <div class="popup-pagination">
-      ${images.map((_, i) => `<span class="popup-dot" onclick="gotoPopupSlide(${i})"></span>`).join("")}
     </div>
   `;
 
@@ -300,4 +320,22 @@ function nextPopupSlide() {
 // Display product details when the page loads
 displayProductDetails();
 
-  
+  // Assuming you have included the SweetAlert library
+function copylink() {
+  const currentUrl = window.location.href;
+  const tempInput = document.createElement('input');
+  document.body.appendChild(tempInput);
+  tempInput.value = currentUrl;
+  tempInput.select();
+  document.execCommand('copy');
+  document.body.removeChild(tempInput);
+
+  Swal.fire({
+    icon: 'success',
+    title: 'Link Copied!',
+    text: 'Share the link with your friends and family.',
+    timer: 2000,
+    timerProgressBar: true,
+    showConfirmButton: false
+  });
+}

@@ -48,229 +48,86 @@
   <br><br><br>
  
 </head>
-<body>
- <h3 align="center">My Profile</h3>
-<div class="profile-container" align="center">
-  
-  <div class="profile-picture">
-    <img id="profile-picture" src="https://wallpapers.com/images/hd/cool-pictures-fz4qiypiy3ob4vix.jpg" alt="">
-  </div>
-  <div class="profile-info">
-    <div class="user-details">
-      <h3 id="user-name">...</h3>
-      <p id="user-email">...</p>
+<body><br>
+ <div class="ds" align="center">
+  <div class="container" align="center">
+    <div class="profile-card">
+      <h2>Your Profile</h2>
+      <img class="profile-picture" id="profile-picture" src="" >
+      <p id="user-name"></p>
+      <p id="user-email"></p>
+      <button id="editProfileBtn" class="bx bx-edit"> Edit</button>
+      <div class="shipping-card">
+        <h2>Shipping Address</h2>
+        <p id="shipping-address"></p>
+        <div id="phone-number">Loading...</div>
+<div id="email">Loading...</div>
+        <button id="editShippingBtn" class="bx bx-edit"> Edit</button>
+      </div>
     </div>
-  </div>
-  <div class="profile-form">
-    <hr>
-    <div id="profile-update-form">
-      <button class="bx bx-log-out" onclick="logout()" style="background-color: red;"> Logout</button>
-    </div>
-  </div>
-</div>
-
     
+  </div>
+ </div>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script   src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>  
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>  
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+ 
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
   
   <script src="JS/nav.js"></script>
   <script src="JS/profile.js"></script>
   <br><br><br>
   <style>
-   li{
-    margin-bottom: 10px;
-   }
-.loading-spinner {
-  align-items: center;
-  justify-content: center;
-}
-
-.spinner {
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top: 4px solid #3498db;
-  width: 40px;
-  height: 40px;
-  animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin: 20px;
-}
-
-/* Profile Page Styles */
-.profile-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.profile-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-
-.user-info {
-  flex-grow: 1;
-}
-
-.user-name {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.user-email {
-  color: #666;
-  margin-bottom: 20px;
-}
-
-/* Order History Styles */
-.order-list {
-  list-style: none;
-  padding: 0;
-}
-
-.order-item {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 15px;
-  margin-bottom: 20px;
-}
-
-.order-info p {
-  margin: 5px 0;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .profile-picture {
-    width: 60px;
-    height: 60px;
-  }
-
-  .user-name {
-    font-size: 20px;
-  }
-
-  .order-item {
-    padding: 10px;
-  }
-}
-
-/* Profile Page Styles */
-.profile-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.profile-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-.profile-info {
-}
-
-.user-info {
-  flex-grow: 1;
-}
-
-.user-name {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-.user-email {
-  font-size: 18px;
-  color: #666;
-  margin-bottom: 20px;
-}
-
-/* Order History Styles */
-.order-list {
-  list-style: none;
-  padding: 0;
-}
-
-.order-item {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 30px;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.order-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.order-info {
-  margin-left: 20px;
-}
-
-.order-info p {
-  margin: 5px 0;
-  font-size: 16px;
-  color: #555;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .profile-picture {
-    width: 80px;
-    height: 80px;
-  }
-
-  .user-name {
-    font-size: 24px;
-  }
-
-  .user-email {
-    font-size: 16px;
-  }
-
-  .order-item {
-    padding: 15px;
-    margin-bottom: 25px;
-  }
-}
-.profile-picture {
-  width: 150px; /* Adjust the width and height as needed */
-  height: 150px;
-  border: 5px solid transparent; /* Start with a transparent border */
-  border-image: linear-gradient(to right, red, purple);
-  border-image-slice: 1; /* Keep the entire border as the gradient */
-  overflow: hidden; /* Clip the image to the circular boundary */
-}
-
-.profile-picture img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
+   /* Add your CSS styling here to match Amazon's style */
+    /* This is just a basic layout; adjust it as needed */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    header {
+      background-color: #232f3e;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+    .profile-card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .profile-picture {
+      border: 1px solid rgb(39, 39, 39);
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .swal2-input,.swal2-file, .swal2-textarea {
+      width: 90%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input {
+      width: 50%;
+      padding: 10px;
+      margin: 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
   </style>
 </body>
 

@@ -52,6 +52,18 @@ i {
   font-size: 1em;
 }
 
+.swal2-file-label {
+  width: fit-content;
+  border: none;
+  padding: 0.6em 1em;
+  border-radius: 4px;
+  margin: 10px 0;
+  box-shadow: 0px 5px 3px -4px #00000e;  
+  background-color: #0044ff;
+  color: #ffffff;
+  font-size: 17px;
+  cursor: pointer;
+}
 .tab p{
   font-weight:bold;
   overflow: hidden;
@@ -71,22 +83,28 @@ i {
   background-color: rgba(28, 150, 162, 0.2);
   color: rgba(28, 150, 162, 1);
 }
-button {
-  width: fit-content;
-  border: none;
-  padding: 0.6em 1em;
-  border-radius: 4px;
-  margin: 10px 0;
-  box-shadow: 0px 5px 3px -4px #00000e;  
-  background-color: #0044ff;
-  color: #ffffff;
-  font-size: 17px;
-  cursor: pointer;
+button { width: fit-content;
+border: none;
+padding: 0.6em 1em;
+border-radius: 4px;
+margin: 10px 0;
+box-shadow: 0px 5px 3px -4px #00000e;  
+background-color: #0044ff;
+color: #ffffff;
+font-size: 17px;
+cursor: pointer;
   }
 
 
-
-
+.gallery img{
+  width: 100%;
+  border: 3px solid;
+  border-image-slice: 1;
+  border-width: 2px;
+  border-image-source: linear-gradient(to left, #fc0155, #30004d);
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+}
 .container {
   width: 90%;
   height: auto;

@@ -45,13 +45,19 @@
     </h3>
   </div>
   <br><br><br>
-  <div class="h" align="center"><div class="search-container">
-    <input type="text" id="searchInput" placeholder="Search Products By Title...">
-    <button id="searchButton" class="bx bx-search"></button>
-  </div></div>
-    <div class="product-list" id="productList" align="center">
-      <!-- Products will be displayed here -->
+  <div class="h" align="center">
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search Products By Title...">
+      <button id="searchButton" class="bx bx-search"></button>
+    </div> <br>
+    <h3 id="dsd"></h3>
+    <h3 id="dh"></h3>
+    <hr>
+    <div class="container" id="productList" align="center">
+
     </div>
+  </div>
+  
     <br><br><br>
 <style>
     
@@ -73,7 +79,7 @@ header {
     border-radius: 6px;
   background-color: #ffffff;
   text-align: center;
-  margin: 20px 0;
+  margin: 5px 0;
   width: 66%;
 }
 #searchInput::placeholder {
@@ -96,33 +102,9 @@ header {
   cursor: pointer;
   outline: none;
 }
-.product-card {
-  border: 3px solid;
-  border-image-slice: 1;
-  border-width: 2px;
-  border-image-source: linear-gradient(to left, #fc01e7, #d53a9d);
-    background-color: rgb(255, 255, 255);
-    border-radius: 5px;
-    background-color: #ffffff;
-    border-radius: 6px;
-}
-.product-card button {
-  width: fit-content;
-  border: none;
-  padding: 0.6em 1em;
-  border-radius: 4px;
-  margin: 10px 0;
-  box-shadow: 0px 5px 3px -4px #00000e;  
-  background-color: #0044ff;
-  color: #ffffff;
-  font-size: 17px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
 
  .product-card button, button::after {
-  width:100%; /*Make sure the animation is over the whole element*/
+   /*Make sure the animation is over the whole element*/
 
   -webkit-animation-name: ShineAnimation;
   -webkit-animation-duration: 5s;
