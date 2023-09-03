@@ -11,7 +11,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const storage = firebase.storage();
 let slideshowInterval;
-
+const auth = firebase.auth()
 // Define variables
 let currentIndex = 0;
 let images = []; // Fill this array with your image URLs
@@ -107,7 +107,7 @@ const displayProductDetails = async () => {
       if (product.productCategory === 'footwear' && images.length < 4) {
         images.push('https://images.meesho.com/images/products/44363/1_512.jpg');
       }
-
+      desc = product.description
       const productCard = document.createElement('div');
       document.title = `ᴛʀᴜꜱᴛᴇᴅ ᴅᴇᴀʟꜱ.in | ${product.name}`;
       productCard.className = 'product-details-card';
@@ -141,7 +141,7 @@ const displayProductDetails = async () => {
           </div><br>
           <div class="product-specs">
             <h3>Specifications:</h3>
-            <h4>${product.description}</h4>
+            <h4>${desc.replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>')}</h4>
           </div>
           
           <hr>
@@ -150,16 +150,65 @@ const displayProductDetails = async () => {
             ${images.map(image => `<img src="${image}">`).join('')}
           </div>
         </div>
+        <br>
+        <hr>
+        <br>
+        <h3>Customer Feedbacks</h3>
+        <button id="openFeedbackBtn" onclick="openFeedbackForm()">Leave Feedback</button>
+        <hr>
       `;
+ // Fetch reviews for the product from Firestore
+// Fetch reviews for the product from Firestore
 
-      productDetailsElement.innerHTML = '';
 
+      
+productDetailsElement.innerHTML = '';
       document.getElementById('io').innerHTML = `
         <div class="bx bx-share tab" id="copy-url-button" onclick="copylink()"> Share</div>
         <div class="bx bx-cart tab" id="oi" onclick="window.location.href = 'buy.html?id=${productId}'"> Buy</div>`;
+       // Fetch reviews for the product from Firestore
+ 
+// const reviewsSnapshot = await db.collection('feedback')
+// .where('productId', '==', productId) 
+// .get();
 
-      productDetailsElement.appendChild(productCard);
+// const reviews = [];
+// reviewsSnapshot.forEach((doc) => {
+// const reviewData = doc.data();
+// reviews.push(reviewData);
+// });
 
+// const reviewsContainer = document.createElement('div');
+// reviewsContainer.className = 'reviews-container';
+
+// if (reviews.length > 0) {
+// const reviewsList = document.createElement('ul');
+// reviewsList.className = 'reviews-list';
+
+// reviews.forEach((review) => {
+//   const reviewItem = document.createElement('li');
+//   reviewItem.className = 'review-item';
+//   reviewItem.innerHTML = `
+//     <div class="review-user">
+//       <img src="images/user.png" alt="${review.userName}" class="user-avatar">
+//       <span class="user-name">${review.userName}</span>
+//     </div>
+//     <div class="review-text">${review.text}</div>
+//   `;
+//   reviewsList.appendChild(reviewItem);
+// });
+
+// reviewsContainer.appendChild(reviewsList);
+// } else {
+// reviewsContainer.innerHTML = '<p>No reviews available for this product.</p>';
+// }
+
+// productDetailsElement.appendChild(reviewsContainer);
+
+  productDetailsElement.appendChild(productCard);
+        
+     
+      
       const slider = document.getElementById('slider');
       const slideImage = document.getElementById('slideImage');
 
@@ -170,13 +219,15 @@ const displayProductDetails = async () => {
         .map((img, i) => `<img src="${img}" class="thumbnail ${i === currentIndex ? 'active' : ''}" onclick="gotoSlide(${i})"/>`)
         .join('');
       slider.appendChild(thumbnailContainer);
-// Add event listener to save the selected size in local storage when changed
+if (product.productCategory != 'other') {
+  // Add event listener to save the selected size in local storage when changed
 const sizeSelect = document.getElementById('sizeSelect');
 sizeSelect.addEventListener('change', (event) => {
   const selectedSize = event.target.value;
   localStorage.setItem('selectedSize', selectedSize);
   console.log(selectedSize)
 });
+}
       // Rest of your code for popup and slide functionality
     } else {
       productDetailsElement.innerHTML = '<p>Product not found.</p>';
@@ -187,6 +238,55 @@ sizeSelect.addEventListener('change', (event) => {
   }
 };
 
+
+function openFeedbackForm() {
+  const user = auth.currentUser
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get('request-id'); // Fetch productId
+  Swal.fire({
+    title: 'Leave Feedback',
+    html: `
+      <input type="text" id="feedbackInput" placeholder="Your feedback" class="swal2-input">
+      <input type="file" id="feedbackImageInput" accept="image/*" class="swal2-file">
+    `,
+    showCancelButton: true,
+    confirmButtonText: 'Submit',
+    preConfirm: async () => {
+      const feedbackText = Swal.getPopup().querySelector('#feedbackInput').value;
+      const feedbackImage = Swal.getPopup().querySelector('#feedbackImageInput').files[0];
+
+      if (!feedbackText) {
+        Swal.showValidationMessage('Please enter your feedback');
+      }
+
+      // Upload the image to Firebase Storage (you need to set up Firebase for this)
+      let imageUrl = '';
+      if (feedbackImage) {
+        const storageRef = firebase.storage().ref();
+        const imageRef = storageRef.child(`feedback/${productId}/${new Date().getTime()}_${feedbackImage.name}`);
+        const snapshot = await imageRef.put(feedbackImage);
+        imageUrl = await snapshot.ref.getDownloadURL();
+      }
+
+      // Save feedback in Firebase Firestore (you need to set up Firebase for this)
+      const feedbackData = {
+        text: feedbackText,
+        imageUrl: imageUrl,
+        productId: productId,
+        userName: user.displayName, // You need to implement a function to get the current user's profile picture
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+      };
+
+      await db.collection('feedback').add(feedbackData);
+
+      return feedbackData;
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire('Feedback Submitted', 'Thank you for your feedback!', 'success');
+    }
+  });
+}
 
 // ... (rest of your code)
 

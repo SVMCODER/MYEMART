@@ -28,25 +28,54 @@ try {
     productCard.className = 'product-details-card';
     productCard.innerHTML = `
       <img class="product-image" src="${product.mainImage}">
+      <hr>
       <div class="product-info">
         <h2 class="product-title">${product.name}</h2>
-        <h4 class="strike">Original Price: ₹${product.price + product.discount}</h4>
-        <h4 class="product-discount">Discount: ₹${product.discount}</h4>
-        <div class="product-price">Price: ₹${product.price}</div>
-        <div class="product-shipping-charges">Shipping Charges: ₹${product.shippingCharges}</div>
+        <table>
+  <tr>
+    <th>Original Price</th>
+    <td>₹${product.price + product.discount}</td>
+  </tr>
+  <tr>
+    <th>Discount</th>
+    <td>₹${product.discount}</td>
+  </tr>
+  <tr>
+    <th>Price</th>
+    <td>₹${product.price}</td>
+  </tr>
+  <tr>
+    <th>Shipping Charges</th>
+    <td>FREE*</td>
+  </tr>
+</table>
         <div class="shipping-form" style="color: black;">
-          <button class='bx bx-refresh' id='sae' onclick='window.location.href ="profile.html"'> Change Information</button>
-          <br>
+          
           <span id="shippingForm">
           <h2>Shipping Information</h2>
             <input type="text" id="buyerName" placeholder="Full Name*" required>
             <textarea id="shippingAddress" placeholder="Shipping Address*" required></textarea>
             <input type="number" id="phoneNumber" placeholder="Phone Number*" required>
             <input type="email" id="email" placeholder="Email Address*" required>
-           
+            <button class='bx bx-refresh' id='sae' onclick='window.location.href ="profile.html"'> Change Information</button>
+         
           </span>
-          <h2>PAYMENT METHOD</h2>
-          <h3 align='left' class='bx bx-check'> Cash On Delivery</h3>
+
+          <hr>
+          <h2>Payment Method</h2><br>
+          <div class="radio-container c" id='c'>
+          <input type="radio" class="radio-button" id="radio1" name="radioGroup" checked>
+          <label for="radio1" class="radio-label">
+            <i class='fas fa-shipping-fast'></i> Cash On Delivery
+          </label>
+          </div>
+        
+        <div class="radio-container">
+          <input type="radio" class="radio-button" id="radio2" name="radioGroup" disabled>
+          <label for="radio2" class="radio-label">
+            <i class='bx bx-wifi icon'></i> Online Payment
+          </label>
+        </div>
           
 
         </div>
@@ -111,7 +140,6 @@ async function buy() {
 
     const user = firebase.auth().currentUser;
     const userId = user.uid;
-
     let shippingAddress, phoneNumber, email;
 
     // Check if the shipping form fields are visible
@@ -123,7 +151,7 @@ async function buy() {
 
       if (shippingAddress === "" || phoneNumber === "" || email === "" || buyerName === "") {
         document.getElementById('buy-button').disabled = false;
-        document.getElementById('buy-button').innerHTML = 'Buy';
+        document.getElementById('buy-button').innerHTML = ' Buy';
         Swal.fire({
           icon: "error",
           title: "Missing Information",
@@ -150,7 +178,7 @@ async function buy() {
       } else {
         // Saved shipping data not found
         document.getElementById('buy-button').disabled = false;
-        document.getElementById('buy-button').innerHTML = 'Buy';
+        document.getElementById('buy-button').innerHTML = ' Buy';
         Swal.fire({
           icon: "error",
           title: "Shipping Data Not Found",
@@ -168,6 +196,12 @@ function generateRandomId() {
   }
   return sections.join('-');
 }
+if (product.productCategory == 'cloth' || product.productCategory == 'footwear') {
+ a = localStorage.getItem('selectedSize')
+}
+else {
+  a='None'
+}
     const order = {
       userId: userId, // Associate the order with the user
       productId: productId,
@@ -180,15 +214,11 @@ function generateRandomId() {
       arrivingDate: calculateArrivingDate(),
       mainImage: product.mainImage,
       status: "confirmed",
-      categroy: productCategory,
+      categroy: product.productCategory,
+      a,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(), // Add a timestamp field with the current server time
     };
-    if (product.productCategory == 'cloth' || product.productCategory == 'footwear') {
-      order.selectedSize = localStorage.getItem('selectedSize')
-    }
-    else {
-      order.selectedSize='None'
-    }
+    
     const orderId = generateRandomId(); // Generate a random order ID
     const orderRef = db.collection("orders").doc(orderId);
 orderRef.set(order)
@@ -198,13 +228,13 @@ orderRef.set(order)
       title: "Order Placed!",
       text: "Your order has been placed successfully.",
     });
-    document.getElementById('buy-button').disabled = false;
-    document.getElementById('buy-button').innerHTML = 'Buy';
+    document.getElementById('buy-button').disabled = true;
+    document.getElementById('buy-button').innerHTML = ' Thank You!';
     window.location.replace('completed.html')
   } catch (error) {
     console.error("Error placing order:", error);
     document.getElementById('buy-button').disabled = false;
-    document.getElementById('buy-button').innerHTML = 'Buy';
+    document.getElementById('buy-button').innerHTML = ' Buy';
     await Swal.fire({
       icon: "error",
       title: "Error Placing Order",
