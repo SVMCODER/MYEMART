@@ -28,9 +28,9 @@
   </div>
   <br><br><br> 
   <h3 align="center"> Create Product</h3>
-  <div class="my-orders" align="center">
-    <button id="createProductButton" class="bx bx-plus">Create Product</button>
-  </div>
+ <div class="d" align="center">
+  <button id="createProductButton">Add</button>
+ </div>
   <script   src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>  
@@ -44,6 +44,102 @@
  </script>
   <script src="JS/nav.min.js"></script>
 <br><br><br>
+<style>
+  /* Reset some default styles */
+body, h1, h2, p {
+  margin: 0;
+  padding: 0;
+}
 
+/* Basic page styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #000000;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+form {
+  margin-bottom: 20px;
+  max-width: 90%;
+  justify-content: center;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+textarea,
+select {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+table {
+  width: 90%;
+  margin-bottom: 10px;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+button[type="submit"] {
+  background-color: #FF9900;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Message styles */
+.message {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.success {
+  background-color: #4CAF50;
+  color: #fff;
+}
+
+.error {
+  background-color: #FF5733;
+  color: #fff;
+}
+
+</style>
 </body>
 </html>

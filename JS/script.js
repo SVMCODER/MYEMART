@@ -7,6 +7,7 @@ var firebaseConfig = {
   appId: "1:797719983777:web:d7ffca1316891b51ec62e0"
 };
 firebase.initializeApp(firebaseConfig);
+// Initialize Firebase with your Firebase config
 
 // Function to check if a username already exists in the database
 async function checkUsernameExists(username) {
@@ -14,26 +15,19 @@ async function checkUsernameExists(username) {
   return snapshot.exists();
 }
 
-async function login() {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
+// Function to handle Google login
+async function loginWithGoogle() {
+  const provider = new firebase.auth.GoogleAuthProvider();
 
   try {
-    const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+    const userCredential = await firebase.auth().signInWithPopup(provider);
     // User is signed in
     const user = userCredential.user;
-    Swal.fire({
-      icon: "success",
-      title: "Logged In!",
-      text: "Please wait..."
-    });
-    window.location.href = "home.html";
-  } catch (error) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.error("Login error:", errorCode, errorMessage);
-
-    if (errorCode === "auth/user-not-found") {
+    
+    // Check if the user has a username in the Firebase database
+    const usernameSnapshot = await firebase.database().ref("usernames").child(user.displayName).once("value");
+    if (!usernameSnapshot.exists()) {
+      // If the username doesn't exist, prompt the user to set one
       const { value: username } = await Swal.fire({
         title: "Create account",
         text: "Enter your username",
@@ -50,8 +44,7 @@ async function login() {
           }
 
           try {
-            const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
-            const user = userCredential.user;
+            // Update the user's display name with the chosen username
             await user.updateProfile({
               displayName: username
             });
@@ -61,8 +54,8 @@ async function login() {
 
             return username;
           } catch (error) {
-            console.error("Sign up error:", error);
-            Swal.showValidationMessage(`Sign up Error`);
+            console.error("Username update error:", error);
+            Swal.showValidationMessage(`Username Update Error`);
             return false;
           }
         },
@@ -70,20 +63,27 @@ async function login() {
       });
 
       if (username) {
-        
-    Swal.fire({
-      icon: "success",
-      title: "Logged In!",
-      text: "Please wait..."
-    });
+        Swal.fire({
+          icon: "success",
+          title: "Logged In!",
+          text: "Please wait..."
+        });
         window.location.href = "home.html";
       }
     } else {
       Swal.fire({
-        icon: "error",
-        title: "Login Error",
-        text: errorMessage
+        icon: "success",
+        title: "Logged In!",
+        text: "Please wait..."
       });
+      window.location.href = "home.html";
     }
+  } catch (error) {
+    console.error("Google login error:", error);
+    Swal.fire({
+      icon: "error",
+      title: "Login Error",
+      text: "Google Login Error: " + error.message
+    });
   }
 }

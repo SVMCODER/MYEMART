@@ -1,35 +1,37 @@
 var firebaseConfig = {
-    apiKey: "AIzaSyCOA_2bf_b1o1nXSHZO5Re5DjSD66Pa6MY",
-    authDomain: "https://raona0-default-rtdb.firebaseio.com",
-    projectId: "raona0",
-    storageBucket: "raona0.appspot.com",
-    messagingSenderId: "797719983777",
-    appId: "1:797719983777:web:d7ffca1316891b51ec62e0"
-  };
-  firebase.initializeApp(firebaseConfig);
+  apiKey: "AIzaSyCOA_2bf_b1o1nXSHZO5Re5DjSD66Pa6MY",
+  authDomain: "https://raona0-default-rtdb.firebaseio.com",
+  projectId: "raona0",
+  storageBucket: "raona0.appspot.com",
+  messagingSenderId: "797719983777",
+  appId: "1:797719983777:web:d7ffca1316891b51ec62e0"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const storage = firebase.storage();
+let slideshowInterval;
 
-  let slideshowInterval;
-  const db = firebase.firestore();
 // Define variables
 let currentIndex = 0;
 let images = []; // Fill this array with your image URLs
 
 function showPopupSlide(index) {
   try {
-      const popupImage = document.querySelector('.popup-image');
-      const popupThumbnails = document.querySelectorAll('.thumbnail');
+    const popupImage = document.querySelector('.popup-image');
+    const popupThumbnails = document.querySelectorAll('.thumbnail');
 
-      popupImage.src = images[index];
+    popupImage.src = images[index];
 
-      popupThumbnails.forEach((thumbnail, idx) => {
-          if (idx === index) {
-              thumbnail.classList.add('active');
-          } else {
-              thumbnail.classList.remove('active');
-          }
-      });
+    popupThumbnails.forEach((thumbnail, idx) => {
+      if (idx === index) {
+        thumbnail.classList.add('active');
+      } else {
+        thumbnail.classList.remove('active');
+      }
+    });
   } catch (error) {
-      // Handle the error gracefully (e.g., log it or ignore it)
+    // Handle the error gracefully (e.g., log it or ignore it)
   }
 }
 
@@ -61,21 +63,6 @@ function gotoSlide(index) {
   showSlide(index);
 }
 
-// Function to open the popup
-function openPopup(index) {
-  clearInterval(slideshowInterval);
-
-  const popup = document.createElement('div');
-  popup.className = 'popup';
-  popup.innerHTML = `
-    <span class="popup-close" onclick="closePopup()">&times;</span>
-    <img src="${images[index]}" class="popup-image" />
-  `;
-
-  document.body.appendChild(popup);
-  // showPopupSlide(index);
-}
-
 // Function to close the popup
 function closePopup() {
   const popup = document.querySelector('.popup');
@@ -85,222 +72,166 @@ function closePopup() {
   }
 }
 
-
 // Function to start the slideshow
 function startSlideshow() {
-  slideshowInterval = setInterval(nextSlide, 10000);
-}
-  const displayProductDetails = async () => {
-    const productDetailsElement = document.getElementById('productDetails');
-    productDetailsElement.innerHTML = '<div class="loading"></div>'; // Show loading spinner
-  
-  
-    const urlParams = new URLSearchParams(window.location.search);
-    const productId = urlParams.get('request-id');
-  
-    try {
-      const productDoc = await db.collection('products').doc(productId).get();
-      if (productDoc.exists) {
-        const product = productDoc.data();
-        productDetailsElement.innerHTML = '<div class="loading"></div>'; // Show loading spinner
-  
-        const productCard = document.createElement('div');
-        document.title=`ᴛʀᴜꜱᴛᴇᴅ ᴅᴇᴀʟꜱ.in | ${product.name}`
-        productCard.className = 'product-details-card';
-        productCard.innerHTML = `
-          <div id="slider">
-            <img src="${product.mainImage}" class="slide" id="slideImage" onclick="openPopup(0)" />
-            <br>
-            
-            <hr>
-            <br>
-            
-          </div>
-          <div class="product-info">
-          <hr>
-            <h2 class="product-title">${product.name}</h2>
-            
-            <hr>
-            <div class="product-price">
-              <h4 class='strike'>
-                ₹${product.originalPrice}
-              </h4>
-              <h4 class="product-discount">Discount: ₹${product.discount}</h4>
-              <h2>₹${product.price}</h2>
-            </div>
-            <hr>
-            <div class="product-specs">
-              <h3>Specifications:</h3>
-              <ul>
-                <li>${product.spec1}</li>
-                <li>${product.spec2}</li>
-                <li>${product.spec3}</li>
-                <li>${product.spec4}</li>
-              </ul>
-            </div>
-            <hr>
-            <div class="product-details-content">
-              <h3>Product Details:</h3>
-              <ul>
-                <li>${product.detail1}</li>
-                <li>${product.detail2}</li>
-                <li>${product.detail3}</li>
-                <li>${product.detail4}</li>
-                <li>${product.detail5}</li>
-              </ul>
-            </div>
-            <hr>
-            <div class='gallery'>
-            <h3>Gallery</h3>
-            <img src='${product.mainImage}'>
-            <img src='${product.image1}'>
-            <img src='${product.image2}'>
-            <img src='${product.image3}'>
-            <img src='${product.image4}'>
-            </div>
-          </div>
-        `;
-  
-        productDetailsElement.innerHTML = '';
-        document.getElementById('io').innerHTML = `
-        <div class="bx bx-share tab" id="copy-url-button" onclick="copylink()"> Share</div>
-        <div class="bx bx-cart tab" id="oi" onclick="window.location.replace('buy.html?id=${productId}')"> Buy</div>`
-        productDetailsElement.appendChild(productCard);
-  
-        images = [product.mainImage, product.image1, product.image2, product.image3, product.image4];
-  
-        const slider = document.getElementById('slider');
-        const slideImage = document.getElementById('slideImage');
-
-// Display mini image previews below the main slide
-const thumbnailContainer = document.createElement('div');
-thumbnailContainer.className = 'thumbnail-container';
-thumbnailContainer.innerHTML = images
-  .map((img, i) => `<img src="${img}" class="thumbnail ${i === currentIndex ? 'active' : ''}" onclick="gotoSlide(${i})"/>`)
-  .join('');
-
-
-slider.appendChild(thumbnailContainer);
-// function showPopupSlide(index) {
-//   const popupImage = document.querySelector('.popup-image');
-//   const popupThumbnails = document.querySelectorAll('.thumbnail');
-
-//   popupImage.src = images[index];
-
-//   popupThumbnails.forEach((thumbnail, idx) => {
-//       if (idx === index) {
-//           thumbnail.classList.add('active');
-//       } else {
-//           thumbnail.classList.remove('active');
-//       }
-//   });
-// }
-// // Add left and right navigation buttons
-// const prevButton = document.createElement('button');
-// prevButton.className = 'slider-button prev-button';
-// prevButton.innerHTML = '❮';
-// prevButton.onclick = () => gotoSlide(currentIndex - 1);
-// slider.appendChild(prevButton);
-
-// const nextButton = document.createElement('button');
-// nextButton.className = 'slider-button next-button';
-// nextButton.innerHTML = '❯';
-// nextButton.onclick = () => gotoSlide(currentIndex + 1);
-// slider.appendChild(nextButton);
-  
-// Rest of your previous code
-startSlideshow();
-function showSlide(index) {
-  if (index < 0) index = images.length - 1;
-  if (index >= images.length) index = 0;
-
-  currentIndex = index;
-  slideImage.src = images[currentIndex];
-
-  // showPopupSlide(index); // Update the popup image as well
-
-  // Update active thumbnail
-  const thumbnails = document.querySelectorAll('.thumbnail');
-  thumbnails.forEach((thumbnail, i) => {
-      thumbnail.classList.toggle('active', i === currentIndex);
-  });
+  // Your slideshow start logic here
 }
 
-// Rest of your previous code
+const displayProductDetails = async () => {
+  const productDetailsElement = document.getElementById('productDetails');
+  productDetailsElement.innerHTML = '<div class="loading"></div>'; // Show loading spinner
 
-        // Rest of your code for the popup and slide functionality
-      } else {
-        productDetailsElement.innerHTML = '<p>Product not found.</p>';
+  const urlParams = new URLSearchParams(window.location.search);
+  const productId = urlParams.get('request-id');
+
+  try {
+    const productDoc = await db.collection('products').doc(productId).get();
+    if (productDoc.exists) {
+      const product = productDoc.data();
+      productDetailsElement.innerHTML = '<div class="loading"></div>'; // Show loading spinner
+
+      // Define size options based on product category
+      const sizeOptions = product.productCategory === 'cloth' ?
+        ['Small', 'Medium', 'Large', 'XL', 'XXL'] :
+        ['US 6', 'US 7', 'US 8', 'US 9', 'US 10'];
+
+      // Filter and limit images
+      images = [product.mainImage, product.image1, product.image2, product.image3, product.image4]
+        .filter(Boolean) // Remove null or undefined images
+        .slice(0, 4); // Limit to a maximum of 4 images
+
+      if (product.productCategory === 'cloth' && images.length < 4) {
+        images.push('https://cdn.shopify.com/s/files/1/0363/2493/3763/files/SIZE_CHART-01_1_480x480.jpg?v=1676102635');
       }
-    } catch (error) {
-      productDetailsElement.innerHTML = '<p>Error loading product details.</p>';
-      console.error(error);
+
+      if (product.productCategory === 'footwear' && images.length < 4) {
+        images.push('https://images.meesho.com/images/products/44363/1_512.jpg');
+      }
+
+      const productCard = document.createElement('div');
+      document.title = `ᴛʀᴜꜱᴛᴇᴅ ᴅᴇᴀʟꜱ.in | ${product.name}`;
+      productCard.className = 'product-details-card';
+      productCard.innerHTML = `
+        <div id="slider">
+          <img src="${product.mainImage}" class="slide" id="slideImage" onclick="openPopup(0)" />
+          <br>
+          <hr>
+          <br>
+        </div>
+        <div class="product-info">
+          <hr>
+          <h2 class="product-title">${product.name}</h2>
+          <hr>
+          <div class="product-price">
+            <h4 class='strike'>
+              ₹${product.originalPrice}
+            </h4>
+            <h4 class="product-discount">Discount: ₹${product.discount}</h4>
+            <h2>₹${product.price}</h2>
+          </div>
+          <div id='smu'>
+            <!-- Size Selector -->
+            ${product.productCategory === 'cloth' || product.productCategory === 'footwear' ? `
+              <div class="size-selector">
+                <h3 style='color:black'>Choose Size:</h3>
+                <select id="sizeSelect">
+                  ${sizeOptions.map(option => `<option value="${option.toLowerCase()}">${option}</option>`).join('')}
+                </select>
+              </div>` : ''}
+          </div><br>
+          <div class="product-specs">
+            <h3>Specifications:</h3>
+            <h4>${product.description}</h4>
+          </div>
+          
+          <hr>
+          <div class='gallery'>
+            <h3>Gallery</h3>
+            ${images.map(image => `<img src="${image}">`).join('')}
+          </div>
+        </div>
+      `;
+
+      productDetailsElement.innerHTML = '';
+
+      document.getElementById('io').innerHTML = `
+        <div class="bx bx-share tab" id="copy-url-button" onclick="copylink()"> Share</div>
+        <div class="bx bx-cart tab" id="oi" onclick="window.location.href = 'buy.html?id=${productId}'"> Buy</div>`;
+
+      productDetailsElement.appendChild(productCard);
+
+      const slider = document.getElementById('slider');
+      const slideImage = document.getElementById('slideImage');
+
+      // Display mini image previews below the main slide
+      const thumbnailContainer = document.createElement('div');
+      thumbnailContainer.className = 'thumbnail-container';
+      thumbnailContainer.innerHTML = images
+        .map((img, i) => `<img src="${img}" class="thumbnail ${i === currentIndex ? 'active' : ''}" onclick="gotoSlide(${i})"/>`)
+        .join('');
+      slider.appendChild(thumbnailContainer);
+// Add event listener to save the selected size in local storage when changed
+const sizeSelect = document.getElementById('sizeSelect');
+sizeSelect.addEventListener('change', (event) => {
+  const selectedSize = event.target.value;
+  localStorage.setItem('selectedSize', selectedSize);
+  console.log(selectedSize)
+});
+      // Rest of your code for popup and slide functionality
+    } else {
+      productDetailsElement.innerHTML = '<p>Product not found.</p>';
     }
-  };
-
-
-  function openPopup(index) {
-    // Clear the slideshow interval when the popup is opened
-    clearInterval(slideshowInterval);
-  
-    const popup = document.createElement('div');
-    popup.className = 'popup';
-    popup.innerHTML = `
-      <span class="popup-close" onclick="closePopup()">&times;</span>
-      
-      <div class="popup-slider">
-        <button class="popup-slider-btn popup-slider-btn-left" onclick="previousPopupSlide()">&#10094;</button>
-        <img src="${images[index]}" class="popup-image" />
-        <button class="popup-slider-btn popup-slider-btn-right" onclick="nextPopupSlide()">&#10095;</button>
-      </div>
-      <div class="popup-pagination">
-        ${images.map((_, i) => `<span class="popup-dot" onclick="gotoPopupSlide(${i})"></span>`).join("")}
-      </div>
-    `;
-  
-    document.body.appendChild(popup);
-  
-    // Show the initially selected slide
-    // showPopupSlide(index);
+  } catch (error) {
+    productDetailsElement.innerHTML = '<p>Error loading product details.</p>';
+    console.error(error);
   }
-  // ... (rest of your code)
+};
+
+
+// ... (rest of your code)
 
 function gotoSlide(index) {
-  showSlide(index);
-  // showPopupSlide(index);
+showSlide(index);
+// showPopupSlide(index);
 }
+
+
 // Function to open the popup
 function openPopup(index) {
   clearInterval(slideshowInterval);
-
+  
   const popup = document.createElement('div');
   popup.className = 'popup';
+  
+  // Check if there is more than one image to determine whether to show navigation buttons
+  const showNavigationButtons = images.length > 1;
+  
   popup.innerHTML = `
     <span class="popup-close" onclick="closePopup()">&times;</span>
     <div class="popup-slider">
-      <button class="popup-slider-btn popup-slider-btn-left" onclick="previousPopupSlide()">&#10094;</button>
+      ${showNavigationButtons ? `<button class="popup-slider-btn popup-slider-btn-left" onclick="previousPopupSlide()">&#10094;</button>` : ''}
       <img src="${images[index]}" class="popup-image" />
-      <button class="popup-slider-btn popup-slider-btn-right" onclick="nextPopupSlide()">&#10095;</button>
+      ${showNavigationButtons ? `<button class="popup-slider-btn popup-slider-btn-right" onclick="nextPopupSlide()">&#10095;</button>` : ''}
     </div>
   `;
-
+  
   document.body.appendChild(popup);
   showPopupSlide(index);
 }
 
 // Function to close the popup
 function closePopup() {
-  const popup = document.querySelector('.popup');
-  if (popup) {
-    popup.remove();
-    startSlideshow();
-  }
+const popup = document.querySelector('.popup');
+if (popup) {
+  popup.remove();
+  startSlideshow();
+}
 }
 
 // Function to navigate to a specific slide within the popup
 function gotoPopupSlide(index) {
-  currentIndex = index;
-  showPopupSlide(currentIndex);
+currentIndex = index;
+showPopupSlide(currentIndex);
 }
 
 // Function to show the previous slide within the popup
@@ -320,22 +251,22 @@ function nextPopupSlide() {
 // Display product details when the page loads
 displayProductDetails();
 
-  // Assuming you have included the SweetAlert library
+// Assuming you have included the SweetAlert library
 function copylink() {
-  const currentUrl = window.location.href;
-  const tempInput = document.createElement('input');
-  document.body.appendChild(tempInput);
-  tempInput.value = currentUrl;
-  tempInput.select();
-  document.execCommand('copy');
-  document.body.removeChild(tempInput);
+const currentUrl = window.location.href;
+const tempInput = document.createElement('input');
+document.body.appendChild(tempInput);
+tempInput.value = currentUrl;
+tempInput.select();
+document.execCommand('copy');
+document.body.removeChild(tempInput);
 
-  Swal.fire({
-    icon: 'success',
-    title: 'Link Copied!',
-    text: 'Share the link with your friends and family.',
-    timer: 2000,
-    timerProgressBar: true,
-    showConfirmButton: false
-  });
+Swal.fire({
+  icon: 'success',
+  title: 'Link Copied!',
+  text: 'Share the link with your friends and family.',
+  timer: 2000,
+  timerProgressBar: true,
+  showConfirmButton: false
+});
 }

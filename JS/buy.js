@@ -180,7 +180,15 @@ function generateRandomId() {
       arrivingDate: calculateArrivingDate(),
       mainImage: product.mainImage,
       status: "confirmed",
+      categroy: productCategory,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(), // Add a timestamp field with the current server time
     };
+    if (product.productCategory == 'cloth' || product.productCategory == 'footwear') {
+      order.selectedSize = localStorage.getItem('selectedSize')
+    }
+    else {
+      order.selectedSize='None'
+    }
     const orderId = generateRandomId(); // Generate a random order ID
     const orderRef = db.collection("orders").doc(orderId);
 orderRef.set(order)
