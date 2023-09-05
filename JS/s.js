@@ -84,11 +84,11 @@ pistElementu = document.getElementById('dsd')
       pistElementu.innerHTML = `Found ${matchedProducts.length} Result(s)`
       productCard.className = 'ssw product-card'; // Apply the .ssw class
       productCard.innerHTML = `
-        <img class="product-image" src="${product.mainImage}" onclick="window.location.href = 'item.html?request-id=${doc.id}'">
-        <h2 class="product-title" onclick="window.location.href = 'item.html?request-id=${doc.id}'">${product.name}</h2>
-        <div class="product-price" onclick="window.location.href = 'item.html?request-id=${doc.id}'">₹${product.price}</div>
-        <div class="product-discount" onclick="window.location.href = 'item.html?request-id=${doc.id}'">FREE SHIPPING</div>
-        <button class="buy-now-btn bx bx-cart" onclick="window.location.href = 'item.html?request-id=${doc.id}'"> 𝙱𝚞𝚢</button>
+        <img class="product-image" src="${product.mainImage}" onclick="window.location.href = 'item.html?request-id=${product.id}'">
+        <h2 class="product-title" onclick="window.location.href = 'item.html?request-id=${product.id}'">${product.name}</h2>
+        <div class="product-price" onclick="window.location.href = 'item.html?request-id=${product.id}'">₹${product.price}</div>
+        <div class="product-discount" onclick="window.location.href = 'item.html?request-id=${product.id}'">FREE SHIPPING</div>
+        <button class="buy-now-btn bx bx-cart" onclick="window.location.href = 'item.html?request-id=${product.id}'"> 𝙱𝚞𝚢</button>
       `;
 
       productListElement.appendChild(productCard);

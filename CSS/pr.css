@@ -22,10 +22,10 @@ body {
   }
   .product-card,
   .product-details-card {
-   background-color: white;
+   background-color: rgb(255, 255, 255);
    border-radius: 5px;
-    height: 300px;
-    border: 1px solid rgb(2, 3, 8);
+    height: fit-content;
+    border: 1px solid rgb(2, 3, 6);
     box-shadow: 0 2px 5px #505050;
     width: 50%; /* Each item takes up 50% of the container's width */
     box-sizing: border-box; /* Include padding and border in width calculation */
@@ -34,12 +34,12 @@ body {
    justify-content: center;
     margin-bottom: 3px;
   }
-  
   .product-card img.product-image,
   .product-details-card img.product-image {
     
-    height: 120px; /* Adjust the height to your desired value */
-    width: 120px;
+    height: 160px; /* Adjust the height to your desired value */
+
+    width: 90%;
     object-fit: contain;
     border-radius: 5px;
   }
