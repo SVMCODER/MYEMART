@@ -40,7 +40,7 @@ const displayProducts = async () => {
     productCard.innerHTML = `
       <img class="product-image" src="${product.mainImage}" onclick="window.location.href = 'item.html?request-id=${doc.id}'">
       <h2 class="product-title" onclick="window.location.href = 'item.html?request-id=${doc.id}'">${product.name}</h2>
-      <div class="product-price" onclick="window.location.href = 'item.html?request-id=${doc.id}'"><div class='op'>${product.discount}</div> ₹${product.price}</div>
+      <div class="product-price" onclick="window.location.href = 'item.html?request-id=${doc.id}'"><div class='op'>₹${product.originalPrice}</div> ₹${product.price}</div>
       <div class="product-rate" onclick="window.location.href = 'item.html?request-id=${doc.id}'">${rating}</div>
       <div class="product-discount" onclick="window.location.href = 'item.html?request-id=${doc.id}'" > FREE SHIPPING</div>
       <button class="bx bx-cart" onclick="window.location.href = 'item.html?request-id=${doc.id}'"> 𝙱𝚞𝚢</button>
