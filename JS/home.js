@@ -11,34 +11,58 @@ firebase.initializeApp(firebaseConfig);
 const storage = firebase.storage();
 const db = firebase.firestore();
 const auth = firebase.auth();
-  // Function to fetch and display products
-  const displayProducts = async () => {
-    const productListElement = document.getElementById('productList');
-    document.getElementById('dh').innerHTML = '<div class="loading"></div>'
+const displayProducts = async () => {
+  const productListElement = document.getElementById('productList');
+  document.getElementById('dh').innerHTML = '<div class="loading"></div>'
 
-    const productsSnapshot = await db.collection('products').get();
-    productListElement.innerHTML = ''
-    document.getElementById('dh').innerHTML = ''
-    productsSnapshot.forEach(doc => {
+  const productsSnapshot = await db.collection('products').get();
+  productListElement.innerHTML = ''
+  document.getElementById('dh').innerHTML = ''
+  
+  productsSnapshot.forEach(async (doc) => {
+    const product = doc.data();
+    
+    // Check if a rating exists in the product document
+    let rating = product.rating;
+
+    if (rating === undefined) {
+      // If no rating exists, generate a new one
+      rating = generateRandomRatingWithStars();
       
-      const product = doc.data();
+      // Update the product document with the new rating
+      await db.collection('products').doc(doc.id).update({
+        rating: rating,
+      });
+    }
 
-      const productCard = document.createElement('div');
-      productCard.className = 'product-card';
-      productCard.innerHTML = `
-        <img class="product-image" src="${product.mainImage}" onclick="window.location.href = 'item.html?request-id=${doc.id}'">
-        <h2 class="product-title" onclick="window.location.href = 'item.html?request-id=${doc.id}'">${product.name}</h2>
-        <div class="product-price" onclick="window.location.href = 'item.html?request-id=${doc.id}'"><div class='op'>${product.discount}</div> ₹${product.price}</div>
-        <div class="product-discount" onclick="window.location.href = 'item.html?request-id=${doc.id}'" > FREE SHIPPING</div>
-        <button class="bx bx-cart" onclick="window.location.href = 'item.html?request-id=${doc.id}'"> 𝙱𝚞𝚢</button>
-      `;
+    const productCard = document.createElement('div');
+    productCard.className = 'product-card';
+    productCard.innerHTML = `
+      <img class="product-image" src="${product.mainImage}" onclick="window.location.href = 'item.html?request-id=${doc.id}'">
+      <h2 class="product-title" onclick="window.location.href = 'item.html?request-id=${doc.id}'">${product.name}</h2>
+      <div class="product-price" onclick="window.location.href = 'item.html?request-id=${doc.id}'"><div class='op'>${product.discount}</div> ₹${product.price}</div>
+      <div class="product-rate" onclick="window.location.href = 'item.html?request-id=${doc.id}'">${rating}</div>
+      <div class="product-discount" onclick="window.location.href = 'item.html?request-id=${doc.id}'" > FREE SHIPPING</div>
+      <button class="bx bx-cart" onclick="window.location.href = 'item.html?request-id=${doc.id}'"> 𝙱𝚞𝚢</button>
+    `;
+    
+    productListElement.appendChild(productCard);
+  });
+}
 
-      productListElement.appendChild(productCard);
-     
-    });
-    
-    
-  };
+// Your generateRandomRatingWithStars function remains the same as before
+function generateRandomRatingWithStars() {
+  const minRating = 4;
+  const maxRating = 5;
+  const integerPart = Math.floor(Math.random() * (maxRating - minRating)) + minRating;
+  const decimalPart = Math.floor(Math.random() * 10); // Generates a number between 0 and 9 for tenths of a star
+  const stars = "★".repeat(integerPart); // Repeat the star character based on the integer part
+  const rating = `${stars} ${integerPart}.${decimalPart}`;
+  return rating;
+}
+
+
+ 
   // Display products when the page loads
   displayProducts();
 // Updated logout function with confirmation
