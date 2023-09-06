@@ -128,8 +128,7 @@ const displayProductDetails = async () => {
             </h4>
             <h4 class="product-discount">Discount: ₹${product.discount}</h4>
             <h2>₹${product.price}</h2>
-            <br>
-            <h3>${product.rating}</h3>
+            <h3 style='color: crimson;'>${product.rating}</h3>
           </div>
           <div id='smu'>
             <!-- Size Selector -->
@@ -250,31 +249,22 @@ function openFeedbackForm() {
   Swal.fire({
     title: 'Leave Feedback',
     html: `
-      <input type="text" id="feedbackInput" placeholder="Your feedback" class="swal2-input">
+      <textarea type="text" id="feedbackInput">Very amazing product 😍👌 Must Buy!</textarea>
     `,
     showCancelButton: true,
     confirmButtonText: 'Submit',
     preConfirm: async () => {
       const feedbackText = Swal.getPopup().querySelector('#feedbackInput').value;
-      const feedbackImage = Swal.getPopup().querySelector('#feedbackImageInput').files[0];
 
       if (!feedbackText) {
         Swal.showValidationMessage('Please enter your feedback');
       }
 
-      // Upload the image to Firebase Storage (you need to set up Firebase for this)
-      let imageUrl = '';
-      if (feedbackImage) {
-        const storageRef = firebase.storage().ref();
-        const imageRef = storageRef.child(`feedback/${productId}/${new Date().getTime()}_${feedbackImage.name}`);
-        const snapshot = await imageRef.put(feedbackImage);
-        imageUrl = await snapshot.ref.getDownloadURL();
-      }
+      
 
       // Save feedback in Firebase Firestore (you need to set up Firebase for this)
       const feedbackData = {
         text: feedbackText,
-        imageUrl: imageUrl,
         productId: productId,
         userName: user.displayName, // You need to implement a function to get the current user's profile picture
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),

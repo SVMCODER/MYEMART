@@ -245,3 +245,7 @@ body {
 #sizeSelect option {
   padding: 5px;
 }
+#slider, #slider img {
+  width: 100%;
+  height: fit-content;
+}
