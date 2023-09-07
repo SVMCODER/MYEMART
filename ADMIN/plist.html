@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>ᴛʀᴜꜱᴛᴇᴅ ᴅᴇᴀʟꜱ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/CSS/styles.css">
+  <link rel="stylesheet" href="/CSS/pr.css">
+  <script src="https://kit.fontawesome.com/e8f41511df.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <script src="https://kit.fontawesome.com/e8f41511df.js" crossorigin="anonymous"></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+  <div class="tab-nav-container">
+    <div class="tab active purple">
+      <i class='bx bxs-home'></i>
+      <p></p>
+    </div>
+    <div class="tab" onclick="upload()">
+      <i class='bx bx-plus'></i>
+      <p></p>
+    </div>
+   
+    <div class="tab" onclick="orders()">
+      <i class='bx bx-box'></i>
+      <p></p>
+    </div>
+  </div>
+  <div class="sass">
+    
+    <div class="head">
+      <h3>ᴛʀᴜꜱᴛᴇᴅ ᴅᴇᴀʟꜱ</h3>
+      
+      <h3 class="right">
+        <i class="bx bxs-crown" style="color: gold"></i>
+        <i></i>
+        
+      </h3>
+
+    </div>
+  
+    <br><br><br><br>
+    
+  <div class="dsdsss" align="center">
+    <h3>Welcome Admin</h3>
+    <div class="so" align="center"> 
+    <div class="tabw">
+      <i class="fas fa-edit"></i>
+      <p>View & Edit Products</p>
+    </div>
+    <div class="tabw">
+      <i class="fa-solid fa-box"></i>
+      <p>Manage Orders</p>
+    </div>
+    <div class="tabw">
+        <i class="fa-solid fa-plus"></i>
+        <p>Upload Products</p>
+      </div>
+  </div>
+</div>
+  <h3 align="center" id="plaxs">Products (counting...)</h3>
+ 
+  <div class="container" id="productList" align="center">
+  
+  </div>
+  <div id="dh" align="center"></div>
+  <br><br><br><br>
+
+
+<style>
+  .product-price:nth-child(0) {
+    display: flex;
+    text-decoration: line-through;
+    color: red;
+  }
+  button {
+  width: fit-content;
+  border: none;
+  padding: 0.6em 1em;
+  border-radius: 4px;
+  margin: 10px 0;
+  box-shadow: 0px 5px 3px -4px #888888;  
+  background-color: #ffc400;
+  color: #000000;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+button, button::after {
+   /*Make sure the animation is over the whole element*/
+
+  -webkit-animation-name: ShineAnimation;
+  -webkit-animation-duration: 5s;
+  
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: cubic-bezier(.12,.89,.98,.47);
+}
+
+@-webkit-keyframes ShineAnimation{
+  from {
+      background-repeat:no-repeat;
+      background-image:-webkit-linear-gradient(
+          top left,
+          rgba(255, 255, 255, 0.0) 0%,
+          rgba(255, 255, 255, 0.0) 45%,
+          rgba(255, 255, 255, 0.5) 48%,
+          rgba(255, 255, 255, 0.8) 50%,
+          rgba(255, 255, 255, 0.5) 52%,
+          rgba(255, 255, 255, 0.0) 57%,
+          rgba(255, 255, 255, 0.0) 100%
+      );
+      background-position:-250px -250px;
+      background-size: 250px 250px
+  }
+  to {
+      background-repeat:no-repeat;
+      background-position:250px 250px;
+  }
+}
+#slider {
+  border: 3px solid;
+  border-image-slice: 1;
+  border-width: 2px;
+  border-image-source: linear-gradient(to left, #fc01e7, #9a01f3);
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+  width: 98%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.slide {
+  width: 100%;
+  max-height: 250px;
+  min-height: 250px;
+}
+.slide {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.nav-button {
+  display: flex;
+  padding: 10px;
+  font-size: 20px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+#leftButton {
+  left: 0;
+}
+
+#rightButton {
+  right: 0;
+}
+
+#slider:hover .nav-button {
+  display: block; 
+}
+
+.nav-button:hover {
+  background-color: transparent;
+} 
+
+
+</style>
+ 
+ <script   src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+ <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+ <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>  
+ <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>  
+ <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="JS/plist.js"></script>
+    <script src="JS/nav.min.js"></script>
+</body>
+
+</html>

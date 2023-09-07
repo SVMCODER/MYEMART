@@ -73,7 +73,7 @@ searchButton.addEventListener('click', async () => {
 
       // Check if any of the search keywords match any word from the product title
       if (searchKeywords.some(keyword => productTitleWords.includes(keyword))) {
-        matchedProducts.push(product);
+        matchedProducts.push(doc);
       }
     });
 
@@ -94,7 +94,8 @@ pistElementu = document.getElementById('dsd')
   } else {
     productListElement.innerHTML = '';
     document.getElementById('dsd').innerHTML = ''
-    matchedProducts.forEach(product => {
+    matchedProducts.forEach(doc => {
+      const product = doc.data();
       let rating = product.rating;
 
       if (rating === undefined) {
@@ -110,12 +111,12 @@ pistElementu = document.getElementById('dsd')
       pistElementu.innerHTML = `Found ${matchedProducts.length} Result(s)`
       productCard.className = 'ssw product-card'; // Apply the .ssw class
       productCard.innerHTML = `
-      <img class="product-image" src="${product.mainImage}" onclick="window.location.href = 'item.html?request-id=${product.id}'">
-      <h2 class="product-title" onclick="window.location.href = 'item.html?request-id=${product.id}'">${product.name}</h2>
-      <div class="product-price" onclick="window.location.href = 'item.html?request-id=${product.id}'"><div class='op'>${product.discount}</div> ₹${product.price}</div>
-      <div class="product-rate" onclick="window.location.href = 'item.html?request-id=${product.id}'">${rating}</div>
-      <div class="product-discount" onclick="window.location.href = 'item.html?request-id=${product.id}'" > FREE SHIPPING</div>
-      <button class="bx bx-cart" onclick="window.location.href = 'item.html?request-id=${product.id}'"> 𝙱𝚞𝚢</button>
+      <img class="product-image" src="${product.mainImage}" onclick="window.location.href = 'item.html?request-id=${doc.id}'">
+      <h2 class="product-title" onclick="window.location.href = 'item.html?request-id=${doc.id}'">${product.name}</h2>
+      <div class="product-price" onclick="window.location.href = 'item.html?request-id=${doc.id}'"><div class='op'>${product.discount}</div> ₹${product.price}</div>
+      <div class="product-rate" onclick="window.location.href = 'item.html?request-id=${doc.id}'">${rating}</div>
+      <div class="product-discount" onclick="window.location.href = 'item.html?request-id=${doc.id}'" > FREE SHIPPING</div>
+      <button class="bx bx-cart" onclick="window.location.href = 'item.html?request-id=${doc.id}'"> 𝙱𝚞𝚢</button>
      `;
 
       productListElement.appendChild(productCard);
