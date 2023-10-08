@@ -82,6 +82,22 @@ body {
   background-color: rgba(28, 150, 162, 0.2);
   color: rgba(28, 150, 162, 1);
 }
+
+	
+@media (max-width: 450px){
+	.tab-nav-container{
+		padding: 5px;
+	}
+	
+	.tab {
+		padding: 0.5em 1em;
+		margin: 0;
+	}
+	
+	.tab i{
+		font-size: 1em;
+	}
+}		 
 button { width: 50%;
 border: none;
 padding: 0.6em 1em;
