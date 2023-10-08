@@ -16,9 +16,9 @@ body {
   .product-details-card {
    background-color: white;
    border-radius: 5px;
-    border: 1px solid rgb(2, 3, 8);
-    box-shadow: 0 2px 5px #505050;
-    box-sizing: border-box; /* Include padding and border in width calculation */
+    box-shadow: 0 2px 5px #a3a3a3;
+    box-sizing: border-box;
+    
     padding: 0.6em 1em;
    align-items: center;
    justify-content: center;

@@ -1,3 +1,34 @@
+const slider = document.getElementById('slider');
+const slideImage = document.getElementById('slideImage');
+const images = ['images/1.jpg', 'images/2.jpg', 'images/3.jpg'];
+let currentIndex = 0;
+
+function showSlide(index) {
+if (index < 0) index = images.length - 1;
+if (index >= images.length) index = 0;
+
+currentIndex = index;
+slideImage.src = images[currentIndex];
+}
+
+
+
+function nextSlide() {
+showSlide(currentIndex + 1);
+}
+
+function prevSlide() {
+showSlide(currentIndex - 1);
+}
+
+// Automatically switch to the next slide every 3 seconds
+setInterval(nextSlide, 4000);
+
+// Initially show the first slide
+showSlide(currentIndex);
+
+
+
 var firebaseConfig = {
   apiKey: "AIzaSyCOA_2bf_b1o1nXSHZO5Re5DjSD66Pa6MY",
   authDomain: "https://raona0-default-rtdb.firebaseio.com",
@@ -103,33 +134,6 @@ Swal.fire({
   }
 });
 }
-const slider = document.getElementById('slider');
-const slideImage = document.getElementById('slideImage');
-const images = ['images/1.jpg', 'images/2.jpg', 'images/3.jpg'];
-let currentIndex = 0;
 
-function showSlide(index) {
-if (index < 0) index = images.length - 1;
-if (index >= images.length) index = 0;
-
-currentIndex = index;
-slideImage.src = images[currentIndex];
-}
-
-
-
-function nextSlide() {
-showSlide(currentIndex + 1);
-}
-
-function prevSlide() {
-showSlide(currentIndex - 1);
-}
-
-// Automatically switch to the next slide every 3 seconds
-setInterval(nextSlide, 4000);
-
-// Initially show the first slide
-showSlide(currentIndex);
 
 

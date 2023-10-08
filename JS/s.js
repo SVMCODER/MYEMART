@@ -111,7 +111,7 @@ pistElementu = document.getElementById('dsd')
         });
       }
       const productCard = document.createElement('div');
-      pistElementu.innerHTML = `Found ${matchedProducts.length} Result(s)`
+      pistElementu.innerHTML = `Found ${matchedProducts.length} Products`
       productCard.className = 'ssw product-card'; // Apply the .ssw class
       productCard.innerHTML = `
       <img class="product-image" src="${product.mainImage}" onclick="window.location.href = 'item.html?request-id=${doc.id}'">

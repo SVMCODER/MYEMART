@@ -45,8 +45,8 @@
     </h3>
   </div>
   <br><br><br><br>
-  <div class="h" align="center">
-    <div class="search-container">
+  <div class="h" align="center"> <br>
+    <div class="srv">
       <input type="text" id="searchInput" placeholder="Search Products By Title...">
       <button id="searchButton" class="bx bx-search"></button>
     </div> <br>
@@ -61,7 +61,28 @@
   
     <br><br><br>
 <style>
-    
+  .srv {
+  width: 66%;
+  box-shadow: 0 2px 5px rgba(79, 79, 79, 0.405);
+  border: 1px solid rgb(255, 255, 255);
+  background-color: #ffffff;
+  color: rgb(61, 61, 61);
+  display: flex;
+}
+    input {
+      outline: none;
+      box-shadow: none;
+      border: none;
+      padding: none;
+      width: 70%;
+    }
+    #searchButton {
+      padding: none;
+      width: 20%;
+      margin: none;
+      background-color: white;
+      box-shadow: none;
+    }
 header {
   background-color: #232f3e;
   color: #fff;
@@ -69,40 +90,6 @@ header {
   text-align: center;
 }
 
-.search-container {
-  border: 3px solid;
-  border-image-slice: 1;
-  border-width: 2px;
-  border-image-source: linear-gradient(to left, #fc01e7, #d53a9d);
-    background-color: rgb(255, 255, 255);
-    border-radius: 5px;
-    background-color: #ffffff;
-    border-radius: 6px;
-  background-color: #ffffff;
-  text-align: center;
-  margin: 5px 0;
-  width: 66%;
-}
-#searchInput::placeholder {
-  color: rgb(0, 0, 0);
-}
-#searchInput {
-  padding: 10px;
-  width: 60%;
-  outline: none;
-  border: none;
-  box-shadow: none;
-}
-
-#searchButton {
-  box-shadow: none;
-  padding: 10px;
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-  border: none;
-  cursor: pointer;
-  outline: none;
-}
 
  .product-card button, button::after {
    /*Make sure the animation is over the whole element*/
@@ -135,12 +122,7 @@ header {
       background-position:250px 250px;
   }
 }
-    .search-bar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
+   
 </style>
  <script   src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
  <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
