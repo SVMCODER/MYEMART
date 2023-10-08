@@ -21,6 +21,7 @@ body {
 }
 
 .tab-nav-container{
+	z-index: 9;
 	color: black;
 	background-color: #ffbb00;
 	box-shadow: 0 3px 6px #020008, 0 3px 6px #020008;
@@ -30,7 +31,7 @@ body {
   width: 100%;
   left: 0;
   bottom: 0;
-  padding: 0.2em 0.9em;
+  padding: 0.2em 1em;
 }
 
 .tab{
@@ -42,7 +43,7 @@ body {
 	justify-content:center;
 	padding: 16px 16px;
 	margin: 0 10px;
-	
+	margin-right:5px;
 	transition: background 0.4 linear;
 }
 .tab i{
