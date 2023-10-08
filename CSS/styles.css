@@ -21,34 +21,29 @@ body {
 }
 
 .tab-nav-container{
-  z-index: 1;
-  color: rgb(255, 255, 255);
-  background-color: #ffbb00;
-  
-  box-shadow: 0 3px 6px #000000, 0 3px 6px #000000;
-  display: flex;
-  justify-content: space-around;
+	color: black;
+	background-color: #ffbb00;
+	box-shadow: 0 3px 6px #020008, 0 3px 6px #020008;
+	display: flex;
+	justify-content: space-around;
   position: fixed;
   width: 100%;
   left: 0;
   bottom: 0;
+  padding: 0.3em 1em;
 }
-i {
-  margin-right: 5px;
-}
-.tab{
-  z-index: 9;
-  color: rgb(0, 0, 0);
 
-  border-radius:50px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content:center;
-  padding: 16px 20px;
-  margin: 0 10px;
-  font-size: 1em;
-  box-shadow: none;
+.tab{
+	color: black;
+	border-radius:50px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content:center;
+	padding: 20px 20px;
+	margin: 0 10px;
+	font-size: 1em;
+	transition: background 0.4 linear;
 }
 .tab i{
   font-size: 1em;
