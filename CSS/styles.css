@@ -30,7 +30,7 @@ body {
   width: 100%;
   left: 0;
   bottom: 0;
-  padding: 0.3em 1em;
+  padding: 0.2em 0.9em;
 }
 
 .tab{
@@ -40,9 +40,9 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content:center;
-	padding: 20px 20px;
+	padding: 16px 16px;
 	margin: 0 10px;
-	font-size: 1em;
+	
 	transition: background 0.4 linear;
 }
 .tab i{
