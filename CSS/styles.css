@@ -20,36 +20,41 @@ body {
   color: rgb(0, 0, 0);
 }
 
-
 .tab-nav-container{
-	z-index: 9;
-    color: black;
-    background-color: #ffbb00;
-    box-shadow: 0 3px 6px #020008, 0 3px 6px #020008;
-	display: flex;
-	justify-content: space-around;
+  z-index: 1;
+  color: rgb(255, 255, 255);
+  background-image: linear-gradient(to left, #fc0161, #b201f3);
+  
+  box-shadow: 0 3px 6px #000000, 0 3px 6px #000000;
+  display: flex;
+  justify-content: space-around;
   position: fixed;
   width: 100%;
   left: 0;
   bottom: 0;
-  padding: 0.3em 1em;
-  }
-  .tab i{
-	font-size: 1em;
 }
-  .tab{
-    color: black;
-    border-radius:50px;
-	cursor: pointer;
-	display: flex;
-	align-items: center;
-	justify-content:center;
-	padding: 20px 20px;
-	margin: 0 10px;
-	font-size: 1em;
-	transition: background 0.4 linear;
-  }
-  
+i {
+  margin-right: 5px;
+}
+.tab{
+  z-index: 9;
+  color: rgb(255, 255, 255);
+
+  border-radius:50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  padding: 16px 20px;
+  margin: 0 10px;
+  font-size: 1em;
+  box-shadow: none;
+}
+.tab i{
+  font-size: 1.2em;
+  font-weight: lighter;
+}
+
 .swal2-file-label {
   width: fit-content;
   border: none;
@@ -72,7 +77,7 @@ body {
 }
 
 .tab.active{
-  color: #4c00ff;
+  color: #fff700;
 }
 .tab.active.yellow{
   background-color: rgba(230, 169, 25, 0.2);
@@ -82,29 +87,13 @@ body {
   background-color: rgba(28, 150, 162, 0.2);
   color: rgba(28, 150, 162, 1);
 }
-
-	
-@media (max-width: 450px){
-	.tab-nav-container{
-		padding: 5px;
-	}
-	
-	.tab {
-		padding: 0.5em 1em;
-		margin: 0;
-	}
-	
-	.tab i{
-		font-size: 1em;
-	}
-}		 
 button { width: 50%;
 border: none;
 padding: 0.6em 1em;
 border-radius: 4px;
 margin: 10px 0;
-box-shadow: 0px 5px 3px -4px #00000e;  
 background-color: #ffbf00;
+box-shadow: 0px 5px 3px -4px #00000e;  
 color: #ffffff;
 font-size: 17px;
 cursor: pointer;
@@ -131,8 +120,8 @@ cursor: pointer;
 .head{
 
   z-index: 9;
-    color: rgb(0, 0, 0);
-    background-color: #ffbb00;
+    color: rgb(255, 255, 255);
+    background-image: linear-gradient(to left, #fc0161, #b201f3);
     border: none;
     display: flex;
     position: fixed;
@@ -257,7 +246,6 @@ button {
   border-radius: 4px;
   margin: 10px 0;
   box-shadow: 0px 5px 3px -4px #888888;  
-  background-color: #ffc400;
   color: #000000;
   font-size: 16px;
   cursor: pointer;
@@ -311,7 +299,7 @@ button, button::after {
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
   color: rgb(255, 255, 255);
-  background-color: rgb(255, 208, 0);
+  background-image: linear-gradient(to left, #fcb901, #d3f301);
   box-shadow: 0px 5px 3px -4px #888888; 
   color: rgb(255, 0, 81);
 }
