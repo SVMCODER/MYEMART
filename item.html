@@ -1225,15 +1225,18 @@ li{
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: linear-gradient(to left, #fc01e7, #9a01f3)
 }
 
 .popup-close {
   position: absolute;
   top: 10px;
   right: 10px;
-  font-size: 20px;
-  color: rgb(0, 0, 0);
+  font-size: 32px;
+  color: rgb(1, 1, 1);
   cursor: pointer;
+  border-radius: 50%;
+  background-color: #d2d2d205;
 }
 
 .popup-slider {
@@ -1264,6 +1267,12 @@ li{
 
 .popup-image {
   width: 100%;
+  border: 3px solid;
+  border-image-slice: 1;
+  border-width: 2px;
+  border-image-source: linear-gradient(to left, #fcb501, #f3c701);
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
 }
 
 .popup-pagination {
@@ -1678,6 +1687,60 @@ button, button::after {
 }
 .bx-cart {
   width: 90%;
+}
+button {
+  width: fit-content;
+}
+html,body {
+  outline-color: #000b1f;
+  height: 94%;
+  margin: 0;
+  user-select: none;
+  }
+  a{
+  text-decoration: none;
+  color: #ffffff;
+  }
+body {
+  outline-color: #161616;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+}
+
+
+
+
+.gallery img{
+  width: 100%;
+  border: 3px solid;
+  border-image-slice: 1;
+  border-width: 2px;
+  border-image-source: linear-gradient(to left, #ffd900, #fd002a);
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+}
+.container {
+  width: 90%;
+  height: auto;
+  width: 90%;
+  padding-bottom: 30px;
+  color: rgb(0, 0, 0);
+  padding: 0.6em 1em;
+}
+.head{
+
+  z-index: 9;
+    color: rgb(255, 255, 255);
+    background-image: linear-gradient(to left, #fc0161, #b201f3);
+    border: none;
+    display: flex;
+    position: fixed;
+    box-shadow: 0px 5px 3px -4px #898989;  
+    justify-content: space-between;
+    width: 100%;
+    left: 0;
+    top: 0;
+    padding: 0.1em 1em;
 }
     </style>
  <script   src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
