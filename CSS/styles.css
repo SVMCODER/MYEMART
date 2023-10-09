@@ -54,6 +54,20 @@ body {
 .tab i{
 	font-size: 1em;
 }
+@media (max-width: 450px){
+	.tab-nav-container{
+		padding: 5px;
+	}
+	
+	.tab {
+		padding: 0.5em 1em;
+		margin: 0;
+	}
+	
+	.tab i{
+		font-size: 1em;
+	}
+}
 .swal2-file-label {
   width: fit-content;
   border: none;
