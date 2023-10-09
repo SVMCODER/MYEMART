@@ -167,8 +167,8 @@ const displayProductDetails = async () => {
       
 productDetailsElement.innerHTML = '';
       document.getElementById('io').innerHTML = `
-        <div class="bx bx-share tab" id="copy-url-button" onclick="copylink()"> Share</div>
-        <div class="bx bx-cart tab" id="oi" onclick="window.location.href = 'buy.html?id=${productId}'"> Buy</div>`;
+        <div class="bx bx-share tab" id="copy-url-button" onclick="copylink()">‎ Share</div>
+        <div class="bx bx-cart tab" id="oi" onclick="window.location.href = 'buy.html?id=${productId}'">‎ Buy</div>`;
        // Fetch reviews for the product from Firestore
        auth.onAuthStateChanged(async user => {
         if (user) {
@@ -364,3 +364,4 @@ Swal.fire({
   showConfirmButton: false
 });
 }
+
