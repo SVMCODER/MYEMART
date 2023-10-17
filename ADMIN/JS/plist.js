@@ -106,6 +106,9 @@ function generateRandomRatingWithStars() {
  
   // Display products when the page loads
   displayProducts();
+
+
+
 // Updated logout function with confirmation
 function logout() {
 Swal.fire({
@@ -140,3 +143,69 @@ Swal.fire({
   }
 });
 }
+
+
+
+const database = firebase.database();
+
+const leaderboardContainer = document.getElementById('leaderboard');
+
+async function getUserProductCounts() {
+const querySnapshot = await db.collection('products').get();
+const productCounts = {};
+
+querySnapshot.forEach(doc => {
+const data = doc.data();
+const userId = data.userId;
+
+if (productCounts[userId]) {
+    productCounts[userId]++;
+} else {
+    productCounts[userId] = 1;
+}
+});
+
+// Convert productCounts to an array
+const leaderboardArray = Object.entries(productCounts);
+
+// Sort the array in descending order
+leaderboardArray.sort((a, b) => b[1] - a[1]);
+
+return leaderboardArray;
+}
+
+function generateLeaderboardHTML(leaderboardData) {
+let totalProducts = 0; // Initialize the total products counter
+
+let html = '<h2>Leaderboard</h2><ol>';
+
+leaderboardData.forEach(([userId, count], index) => {
+const username = userId;
+html += `<li>${username.replace('Q1H1gMgRbPWfXBa94KUmJ4kFR352','Aishwary Pandey').replace('Wt17TEcOg2f7gIK29Dd2f0S96zC3','Ansh Vishwakarma').replace('tgT5Y0Qd3lMx5ztwwUwQPf1JLXz1','Shaurya Tripathi').replace('PxycmPjNYTVBGC1msjC0N8N72Nx2','Ayush Pyush').replace('snZq2ZD1csX9c95Wst5RLV8j9kC2','Aviral Tripathi').replace('JnsksoWKMfWJyoRcZyceuDcebWq2','Aakash Yadav').replace('sFlYpUuRpddeizrvi3zYmB6jDSm1','Chaman Sharma').replace('vJvt1VqoNFgXxbfwtTRUrVXLnRC2','Shikhar Srivastava')} - ${count} products</li>`;
+totalProducts += count; // Add to the total products counter
+});
+
+html += '</ol>';
+
+const percentage = ((totalProducts / 1000) * 100).toFixed(2); // Calculate the percentage
+
+return html + `
+<p>TOTAL: ${totalProducts}/1000 PRODUCTS (${percentage}%)</p>
+`;
+}
+
+
+async function displayLeaderboard() {
+try {
+const leaderboardData = await getUserProductCounts();
+
+leaderboardContainer.innerHTML = generateLeaderboardHTML(leaderboardData)+`
+
+`;
+} catch (error) {
+console.error("Error in displayLeaderboard:", error);
+}
+}
+
+
+displayLeaderboard()
