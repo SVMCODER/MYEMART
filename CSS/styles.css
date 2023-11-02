@@ -32,10 +32,9 @@ body {
   width: 100%;
   left: 0;
   bottom: 0;
+  padding: 0.3em 1em;
 }
-i {
-  margin-right: 5px;
-}
+
 .tab{
   z-index: 9;
   color: rgb(0, 0, 0);
@@ -45,14 +44,16 @@ i {
   display: flex;
   align-items: center;
   justify-content:center;
-  padding: 16px 20px;
   margin: 0 10px;
   font-size: 1em;
   box-shadow: none;
+  padding: 20px 20px;
+	margin: 0 10px;
+	font-size: 1em;
+	transition: background 0.4 linear;
 }
 .tab i{
-  font-size: 1.2em;
-  font-weight: lighter;
+  font-size: 1em;
 }
 
 .swal2-file-label {
