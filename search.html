@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>ᴛʀᴜꜱᴛᴇᴅ ᴅᴇᴀʟꜱ</title>
+  <title>ᴛʀᴜʟꜱ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="CSS/styles.css">
   <link rel="stylesheet" href="CSS/pr.css">
@@ -35,22 +35,22 @@
     </div>
   </div>
   <div class="head">
-    <h3>ᴛʀᴜꜱᴛᴇᴅ ᴅᴇᴀʟꜱ</h3>
+    <h3 class="bx bx-arrow-back" onclick="window.history.back()"> Search</h3>
 
     <h3 class="right">
       <i class="bx bx-bell"  onclick="offers()"></i>
-     
-      <i class='bx bx-log-out' onclick="logout()"></i>
+<!--      
+      <i class='bx bx-log-out' onclick="logout()"></i> -->
       <i></i>
     </h3>
   </div>
   <br><br><br><br>
   <div class="h" align="center"> <br>
-    <div class="srv">
-      <input type="text" id="searchInput" placeholder="Search Products By Title...">
+    <div class="srv" align="center">
+      <input type="text" id="searchInput" placeholder="Search anything">
       <button id="searchButton" class="bx bx-search"></button>
     </div> <br>
-    <hr>
+    
     <h3 id="dsd"></h3>
     
     <h3 id="dh"></h3>
@@ -62,12 +62,18 @@
     <br><br><br>
 <style>
   .srv {
+
   width: 66%;
   box-shadow: 0 2px 5px rgba(79, 79, 79, 0.405);
   border: 1px solid rgb(255, 255, 255);
   background-color: #ffffff;
   color: rgb(61, 61, 61);
   display: flex;
+  height: 60px;
+}
+input::placeholder {
+  color: rgb(52, 52, 52);
+  font-size: 12px;
 }
     input {
       outline: none;
@@ -75,17 +81,20 @@
       border: none;
       padding: none;
       width: 70%;
+      height: auto;
     }
     #searchButton {
+      color: black;
       padding: none;
       width: 20%;
+      height: 30px;
       margin: none;
       background-color: white;
       box-shadow: none;
     }
 header {
   background-color: #232f3e;
-  color: #fff;
+  color: #000000;
   padding: 10px 0;
   text-align: center;
 }

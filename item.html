@@ -8,7 +8,7 @@
 <meta property="og:url" content="https://trusteddeals.netlify.app/">
 <meta property="og:type" content="app">
 
-  <title>ᴛʀᴜꜱᴛᴇᴅ ᴅᴇᴀʟꜱ - Product OverView</title>
+  <title>ᴛʀᴜʟꜱ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -21,11 +21,11 @@
     
   </div>
   <div class="head">
-    <h3>ᴛʀᴜꜱᴛᴇᴅ ᴅᴇᴀʟꜱ</h3>
+    <h3 class="bx bx-arrow-back" onclick="window.history.back()"> Product Details</h3>
     <h3 class="right">
       <i class="bx bx-bell" onclick="offers()"></i>
      
-      <i class='bx bx-log-out' onclick="logout()"></i>
+      <!-- <i class='bx bx-log-out' onclick="logout()"></i> -->
       <i></i>
     </h3>
   </div>
@@ -33,7 +33,7 @@
   <div class="all-products" align="center">
 
     
-      <div id="productDetails" class="container"></div>
+      <div id="productDetails" ></div>
     </div>
 
     <br><br><br>
@@ -98,8 +98,11 @@ li{
 /* Review item styles */
 .review-item {
   background-color: #fff;
+  
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  */
+  border-bottom: 1px solid rgb(206, 206, 206);
   padding: 0.6em 1em;
   margin-bottom: 10px;
 }
@@ -121,11 +124,11 @@ li{
 }
 
 .user-name {
-  font-weight: bold;
+  font-size: 16px;
 }
 
 .review-text {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 /* Feedback form styles (inside Swal) */
@@ -571,15 +574,15 @@ li{
    background-color: white;
    box-sizing: border-box;
   
-     box-shadow: 0 2px 5px #9a9a9a;
-    padding: 0.6em 1em;
+     
+    
    align-items: center;
-   
-   justify-content: center;
+/*    
+   justify-content: center; */
     margin-bottom: 3px;
-    width: 100%;
+    width: 98%;
   } 
-  
+ 
   .product-card img.product-image,
   .product-details-card img.product-image {
     width: 100%;
@@ -587,7 +590,6 @@ li{
   
      /* object-fit: contain; */
     object-fit: cover;
-    border-radius: 5px;
   }
   
   .product-card h2.product-title,
@@ -600,22 +602,7 @@ li{
   }
   
   
-  .product-card .product-price,
-  .product-details-card .product-price {
-    font-size: 18px;
-    font-weight: bold;
-    color: #00a708;
-    margin-bottom: 10px;
-  }
-  .strike{
-    color: rgb(255, 17, 0);
-    text-decoration: line-through;
-  }
-  .product-card .product-discount,
-  .product-details-card .product-discount {
-    font-size: 14px;
-    color: #008900;
-  }
+  
   
   .product-card .wishlist-btn,
   .product-details-card .wishlist-btn,
@@ -710,12 +697,23 @@ li{
     align-items: center;
     margin-bottom: 20px;
     padding: 0.6em 1em;
-    width: 88%;
+    width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.247);
   }
   .product-shipping-charges {
     color: #008900;
   }
+  #saletime {
+    background: rgb(255, 0, 72);
+    color: white;
+    margin-top: 0;
+    text-align: left;
+    margin-bottom: 0;
+    width: fit-content;
+    height: fit-content;
+    font-size: 14px;
+  }
+  
   .order-item img {
     max-width: 100px;
     margin-right: 20px;
@@ -805,7 +803,7 @@ li{
 } */
 
 .tab-container {
-  background-color: white;
+  background-color: rgb(34, 0, 255);
 }
             .all-products {
         width: 100%;
@@ -823,15 +821,15 @@ li{
      .tab{
       left: 0;
       width: 50%;
-      color: rgb(255, 255, 255);
-      background-color: rgb(0, 60, 255);
+      color: rgb(0, 0, 0);
+      background-color: rgb(255, 255, 255);
       font-size: 1em;
      }
      .tab:nth-child(2){
       right: 0;
       width: 50%;
       color: rgb(255, 255, 255);
-      background-color: #ff0044;
+      background-color: #4400ff;
       font-size: 1em;
      }
 /* .all-products {
@@ -888,13 +886,19 @@ li{
 }
 
 .user-name {
+  font-size: 16px;
   font-weight: bold;
 }
 
 .review-text {
-  font-size: 16px;
+  font-size: 14px;
 }
-
+.hr {
+  border-bottom: 2px solid rgb(221, 221, 221);
+  width: 100%;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
 /* Feedback form styles (inside Swal) */
 .swal2-popup .swal2-input,
 .swal2-popup .swal2-file {
@@ -1315,13 +1319,13 @@ li{
   text-align: left;
 }
 .reviews-list img {
-  border: 1px solid black;
+  border: 1px solid rgb(99, 99, 99);
 }
 #io {
     background-color: rgb(251, 251, 251);
   }
   .product-details-card {
-    width: 100%;
+    width: 98%;
   }
       *{
   -moz-outline-style: none; /* For Firefox */
@@ -1363,7 +1367,7 @@ i {
 }
 .tab{
   z-index: 9;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 
   cursor: pointer;
   display: flex;
@@ -1434,9 +1438,9 @@ cursor: pointer;
     border-radius: 5px;
 }
 .container {
-  width: 90%;
+  width: 100%;
   height: auto;
-  width: 90%;
+  width: 100%;
   padding-bottom: 30px;
   color: rgb(0, 0, 0);
   padding: 0.6em 1em;
@@ -1504,6 +1508,7 @@ button:disabled {
 
 /* CSS code for the loading spinner */
 .loading {
+  margin-top: 60%;
   justify-content: center;
   display: inline-block;
   border: 4px solid rgba(255, 255, 255, 0.1);
@@ -1715,7 +1720,7 @@ body {
   border: 3px solid;
   border-image-slice: 1;
   border-width: 2px;
-  border-image-source: linear-gradient(to left, #ffd900, #fd002a);
+  border-image-source: linear-gradient(to left, #0400ff, #7600fd);
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
 }
@@ -1730,8 +1735,8 @@ body {
 .head{
 
   z-index: 9;
-    color: rgb(255, 255, 255);
-    background-image: linear-gradient(to left, #fc0161, #b201f3);
+    color: rgb(0, 0, 0);
+    background-color: white;
     border: none;
     display: flex;
     position: fixed;
@@ -1742,6 +1747,58 @@ body {
     top: 0;
     padding: 0.1em 1em;
 }
+
+.hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.product-card .product-price,
+  .product-details-card .product-price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    display: flex;
+    
+  }
+  .salea{
+    margin-left: 20px;
+  }
+  .op {
+  text-decoration: line-through;
+  color: rgb(94, 94, 94);
+  
+  margin-right: 6px;
+  margin-left: 6px;
+}
+  .discd {
+  color: rgb(0, 140, 0);
+}
+  .strike{
+    text-align: left;
+    font-size: 14px;
+    color: rgb(72, 250, 45);
+    text-decoration: line-through;
+  }
+  .product-card .product-discount,
+  .product-details-card .product-discount {
+    font-size: 16px;
+    color: #272727;
+  }
+  .product-specs {
+    text-align: left;
+    font-size: 14px;
+  }
+  .product-specs h3 {
+    text-align: center;
+  }
+  #sizeSelect {
+    width: fit-content;
+  }
+  #sizec {
+    color: blue;
+  }
     </style>
  <script   src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
  <script  src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>

@@ -69,8 +69,12 @@ async function fetchMessagesForUser(userId) {
       `;
       notificationsList.appendChild(notificationItem);
     });
+    if (doc.size == 0) {
+      notificationsList.innerHTML = '<br><br><br><br><br><br><br><br><br><br><br><br> <h3>🔔 No Notifications</h3>'
+ 
+    }
   } catch (error) {
-    console.error("Error fetching messages:", error);
+    notificationsList.innerHTML = '<br><br><br><br><br><br><br><br><br><br><br><br> <h3>🔔 No Notifications</h3>'
   }
 }
 

@@ -48,7 +48,7 @@ async function fetchMyOrders(user) {
     // Clear existing ordersList content
     ordersList.innerHTML = "";
     if (orders.length === 0) {
-      ordersList.innerHTML = 'No Orders Yet!'
+      ordersList.innerHTML = '<br><br><br><br><br><br><br><br><br><br><br><br> <h3>☹ No Purchases Yet</h3>'
     } else {
     orders.forEach((orderData) => {
       const orderItem = document.createElement("div");

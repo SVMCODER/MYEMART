@@ -27,6 +27,7 @@ try {
     const productCard = document.createElement('div');
     productCard.className = 'product-details-card';
     productCard.innerHTML = `
+    <br>
       <img class="product-image" src="${product.mainImage}">
       <hr>
       <div class="product-info">
@@ -220,6 +221,7 @@ else {
     };
     
     const orderId = generateRandomId(); // Generate a random order ID
+    localStorage.setItem('oid',orderId)
     const orderRef = db.collection("orders").doc(orderId);
 orderRef.set(order)
 

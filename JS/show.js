@@ -114,55 +114,81 @@ const displayProductDetails = async () => {
       productCard.innerHTML = `
         <div id="slider">
           <img src="${product.mainImage}" class="slide" id="slideImage" onclick="openPopup(0)" />
-          <br>
-          <hr>
+          
           <br>
         </div>
         <div class="product-info">
-          <hr>
           <h2 class="product-title">${product.name}</h2>
-          <hr>
-          <div class="product-price">
-            <h4 class='strike'>
-              ₹${product.originalPrice}
-            </h4>
-            <h4 class="product-discount">Discount: ₹${product.discount}</h4>
-            <h2>₹${product.price}</h2>
-            
-          </div>
-          <hr>
-          <div class="product-specs">
-            <h3>About This Item</h3>
+          <div class="hr"></div>
+          <div align="left" class="salea">
+    <button id="saletime" class="bx bx-time"> Finding offers...</button>
+    </div>
+          <div class="product-price" style="margin-top:10px"><div class='discd'>${(100*product.price/product.originalPrice-100).toFixed()*-1}% off</div> <div class='op'>${product.originalPrice}</div> ₹${product.price} </div>
+          <h3 style='color: crimson;text-align: left;font-size:14px;margin-left:20px'>${product.rating} - 10,000+ Happy Customers</h3>
+    <h4 style="text-align: left;font-size:14px;margin-left:20px">Free Delivery in 7 Days</h4>
+    
+    
+    
+          <div class="hr"></div>
+          <div class="product-specs" style="margin-left:20px;">
+            <h3>Product Details</h3>
             <h4>${desc.replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('\n','<br>').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','').replace('Within 6-8 business days However, to find out an actual date of delivery, please enter your pin code.','').replace('null','')}</h4>
-          </div><hr>
+          </div><div class="hr"></div>
           <div id='smu'>
             <!-- Size Selector -->
             ${product.productCategory === 'cloth' || product.productCategory === 'footwear' ? `
               <div class="size-selector">
-                <h3 style='color:black'>Choose Size:</h3>
+                <h3 style='color:black'>Select Your Size</h3>
                 <select id="sizeSelect">
                   ${sizeOptions.map(option => `<option value="${option.toLowerCase()}">${option}</option>`).join('')}
-                </select>
+                </select><br>
+                <h4 id='sizec' class='bx bx-chart' onclick="window.location.href='#sc'"> See Size Chart</h4>
               </div>` : ''}
           </div><br>
-          <hr>
-          <div class='gallery'>
+          <div class="hr"></div>
+          <div class='gallery' id='sc'>
             <h3>Gallery</h3>
             ${images.map(image => `<img src="${image}">`).join('')}
           </div>
         </div>
         <br>
-        <hr>
+        <div class="hr"></div>
         <br>
         <h3>Customer Feedbacks</h3>
         <h3 style='color: crimson;'>${product.rating}</h3>
         <button id="openFeedbackBtn" onclick="openFeedbackForm()">Leave Feedback</button>
-        <hr>
+        <div class="hr"></div>
         <div id='rev'></div>
       `;
  // Fetch reviews for the product from Firestore
-// Fetch reviews for the product from Firestore
+// Set the date we're counting down to
+var countDownDate = new Date("Nov 12, 2023 12:00:00").getTime();
 
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+    
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("saletime").innerHTML = " Truls Festive Sale starts in "+ days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("saletime").innerHTML = "🎉 Sale Is Live";
+  }
+}, 1000);
 
       
 productDetailsElement.innerHTML = '';
@@ -364,4 +390,3 @@ Swal.fire({
   showConfirmButton: false
 });
 }
-

@@ -1,46 +1,131 @@
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ᴛʀᴜꜱᴛᴇᴅ ᴅᴇᴀʟꜱ | Order Completed!</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="CSS/styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/confetti-js"></script>
+  <title>ᴛʀᴜʟꜱ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="CSS/styles.css">
+  <link rel="stylesheet" href="CSS/olds.css">
+  <script src="https://cdn.jsdelivr.net/npm/confetti-js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.css" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <script src="https://kit.fontawesome.com/e8f41511df.js" crossorigin="anonymous"></script>
 </head>
-<body style="background-color: rgb(255, 230, 1); color: rgb(255, 255, 255);">
-    <br><br><br><br>
-    <h1> </h1>
-    <div class="io" align="center">
-        <div class="order-item" align="center" >
-            <img src="images/bg.png" alt="">
-            <button class="bx bxs-heart" onclick="window.location.replace('orders.html')"> Done</button>
-        </div>
+<body>
+<div class="tab-nav-container">
+    <div class="tab" onclick="home()">
+        <i class='bx bx-home'></i>
+        <p></p>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
+    <div class="tab active purple">
+        <i class='bx bxs-cart'></i>
+        <p></p>
+    </div>
+    <div class="tab" onclick="hsearch()">
+        <i class='bx bx-search'></i>
+        <p></p>
+    </div>
+    <div class="tab" onclick="support()">
+        <i class='bx bx-support'></i>
+        <p></p>
+    </div>
+    <div class="tab" onclick="profile()">
+        <i class='bx bx-user'></i>
+        <p></p>
+    </div>
+</div>
+
+<div class="head">
+    <h3 class="bx bx-arrow-back" onclick="window.history.back()"> Order Placed</h3>
+    <h3 class="right">
+        <i class='bx bx-bell' onclick="offers()"></i>
+        <i></i>
+    </h3>
+</div>
+<br><br><br>
+<canvas id="confetti-canvas" style="position: fixed; top: 0; left: 0; pointer-events: none;"></canvas>
+<div align="center"> <br>
+    <div class="product-details-card" style="width: 98%;">
+        <h3>Thank You!</h3>
+        <h4 class="bx bxs-heart" id="oid"> </h4>
+        <img src="images/tick.gif" alt="">
+        <h4>You will receive a confirmation email in next 24 hours with all the details regarding this purchase.</h4>
+
+    </div>
+  </div>
+  
+  <script>
+     document.addEventListener('DOMContentLoaded', function () {
             const confettiSettings = { target: 'confetti-canvas' };
             const confetti = new ConfettiGenerator(confettiSettings);
             confetti.render();
         });
-    </script>
-    <canvas id="confetti-canvas" style="position: fixed; top: 0; left: 0; pointer-events: none;"></canvas>
-    <style>
-        button {
-            background-image: linear-gradient(rgb(205, 1, 223),);
-            color: rgb(255, 255, 255);
-            max-width: fit-content;
-            background-color: crimson;
-        }
-        img {
-            width: 100%;
-            max-height: 90%;
-        }
-        .order-item {
-            
-            align-items: center;
-            width: 90%;
-        }
-    </style>
+        document.getElementById('oid').innerHTML = " Order Received #"+ localStorage.getItem('oid')
+  </script>
+  <style>
+    button {
+  width: fit-content;
+  border: none;
+  padding: 0.6em 1em;
+  border-radius: 4px;
+  margin: 10px 0;
+  box-shadow: 0px 5px 3px -4px #00000e;  
+  background-color: #ff0048;
+  color: #ffffff;
+  font-size: 17px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  max-width: fit-content;
+}
+
+button, button::after {
+   /*Make sure the animation is over the whole element*/
+
+  -webkit-animation-name: ShineAnimation;
+  -webkit-animation-duration: 5s;
+  
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: cubic-bezier(.12,.89,.98,.47);
+}
+
+@-webkit-keyframes ShineAnimation{
+  from {
+      background-repeat:no-repeat;
+      background-image:-webkit-linear-gradient(
+          top left,
+          rgba(255, 255, 255, 0.0) 0%,
+          rgba(255, 255, 255, 0.0) 45%,
+          rgba(255, 255, 255, 0.5) 48%,
+          rgba(255, 255, 255, 0.8) 50%,
+          rgba(255, 255, 255, 0.5) 52%,
+          rgba(255, 255, 255, 0.0) 57%,
+          rgba(255, 255, 255, 0.0) 100%
+      );
+      background-position:-250px -250px;
+      background-size: 250px 250px
+  }
+  to {
+      background-repeat:no-repeat;
+      background-position:250px 250px;
+  }
+}
+
+  </style>
+ 
+ 
+  <script src="JS/nav.js"></script>
+<br><br><br>
+
 </body>
 </html>
